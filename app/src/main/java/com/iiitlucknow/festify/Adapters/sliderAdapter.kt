@@ -27,4 +27,3 @@ class sliderAdapter(private var images: MutableList<Int>) :
         return images.size
     }
 }
-    
