@@ -6,6 +6,4 @@ fun main(vararg args: String) {
     val pathToProtoBinary = args[1]
 
     val kdocExemptionTextProtoFilePath = "scripts/assests/kdoc_validity_exemptions.textproto"
-
-
 }
