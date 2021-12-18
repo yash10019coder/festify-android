@@ -12,6 +12,7 @@
 
 # Move file from script folder to .git/hooks folder
 cp scripts/pre-push.sh .git/hooks/pre-push
+chmod +x .git/hooks/pre-push
 
 # Create a folder where all the set up files will be downloaded
 mkdir -p ../festify-android-tools
