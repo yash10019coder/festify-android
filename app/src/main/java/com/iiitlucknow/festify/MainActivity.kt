@@ -13,20 +13,20 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-    lateinit var sliderAdapter: sliderAdapter
-    var images: MutableList<Int> = mutableListOf(
+    private lateinit var sliderAdapter: sliderAdapter
+    private var images: MutableList<Int> = mutableListOf(
         R.drawable.android_img,
         R.drawable.web_development_img,
         R.drawable.cybersecurity_img,
         R.drawable.ai_img,
         R.drawable.designing_img
     )
-    var fields: MutableList<recyclerItem> = mutableListOf(
-        recyclerItem(R.drawable.android, "ANDROID"),
-        recyclerItem(R.drawable.web_development, "WEB DEVELOPMENT"),
-        recyclerItem(R.drawable.cyber_security, "CYBER SECURITY"),
-        recyclerItem(R.drawable.ai, "AI-ML"),
-        recyclerItem(R.drawable.design, "DESIGN")
+    private var fields: MutableList<recyclerItem> = mutableListOf(
+        recyclerItem(R.drawable.android, R.string.android),
+        recyclerItem(R.drawable.web_development, R.string.web),
+        recyclerItem(R.drawable.cyber_security, R.string.cyber_sec),
+        recyclerItem(R.drawable.ai, R.string.ai),
+        recyclerItem(R.drawable.design, R.string.design)
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {

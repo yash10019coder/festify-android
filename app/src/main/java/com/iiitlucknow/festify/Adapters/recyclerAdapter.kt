@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.iiitlucknow.festify.R
 import com.iiitlucknow.festify.data.recyclerItem
@@ -14,6 +15,7 @@ class recyclerAdapter(private var list: MutableList<recyclerItem>) :
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val recycler_text: TextView = view.findViewById(R.id.recycler_text)
         val recycler_icon: ImageView = view.findViewById(R.id.recycler_icon)
+        val context = view.context
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -24,7 +26,10 @@ class recyclerAdapter(private var list: MutableList<recyclerItem>) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.recycler_icon.setImageResource(list[position].icon)
-        holder.recycler_text.text = list[position].title
+        holder.recycler_text.text = holder.context.resources.getString(list[position].title)
+        holder.itemView.setOnClickListener {
+            Toast.makeText(holder.context, holder.recycler_text.text, Toast.LENGTH_SHORT).show()
+        }
 
     }
 
