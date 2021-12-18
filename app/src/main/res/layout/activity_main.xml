@@ -6,11 +6,20 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-
    <androidx.fragment.app.FragmentContainerView
-       android:name="com.iiitlucknow.festify.EventsFragment"
+       android:id="@+id/fragmenthost"
+       android:name="androidx.navigation.fragment.NavHostFragment"
        android:layout_width="match_parent"
        android:layout_height="match_parent"
-       android:id="@+id/new_fragment"/>
+       app:defaultNavHost="true"
+       app:navGraph="@navigation/my_nav_graph" />
 
+   <com.google.android.material.bottomnavigation.BottomNavigationView
+       android:id="@+id/bottomNavigationBar"
+       android:layout_width="match_parent"
+       android:layout_height="56dp"
+       app:layout_constraintBottom_toBottomOf="parent"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintStart_toStartOf="parent"
+       app:menu="@menu/bottomnav_menu" />
 </androidx.constraintlayout.widget.ConstraintLayout>

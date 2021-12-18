@@ -40,5 +40,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/slide"
         tools:listitem="@layout/recycler_item_layout" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,6 +5,9 @@
       <map>
         <entry key="..\:/Development/festify/app/src/main/res/layout/activity_main.xml" value="0.22291666666666668" />
         <entry key="..\:/Development/festify/app/src/main/res/layout/fragment_events.xml" value="0.20885416666666667" />
+        <entry key="..\:/Development/festify/app/src/main/res/layout/fragment_home.xml" value="0.2265625" />
+        <entry key="..\:/Development/festify/app/src/main/res/layout/fragment_teams.xml" value="0.2125" />
+        <entry key="..\:/Development/festify/app/src/main/res/menu/bottomnav_menu.xml" value="0.2265625" />
       </map>
     </option>
   </component>
