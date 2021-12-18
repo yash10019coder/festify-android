@@ -30,10 +30,10 @@ class recyclerAdapter(private var list: MutableList<recyclerItem>) :
         holder.itemView.setOnClickListener {
             Toast.makeText(holder.context, holder.recycler_text.text, Toast.LENGTH_SHORT).show()
         }
-
     }
 
     override fun getItemCount(): Int {
         return list.size
     }
 }
+    
