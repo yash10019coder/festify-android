@@ -3,7 +3,9 @@ package com.iiitlucknow.festify
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.iiitlucknow.festify.Adapters.recyclerAdapter
 import com.iiitlucknow.festify.Adapters.sliderAdapter
 import com.iiitlucknow.festify.data.recyclerItem
@@ -22,6 +24,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 //        val navController = findNavController(R.id.fragmenthost)
 //        binding.bottomNavigationBar.setupWithNavController(navController)
+
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmenthost) as NavHostFragment
+        binding.bottomNavigationBar.setupWithNavController(navHostFragment.navController)
 
         supportActionBar?.hide()
     }
