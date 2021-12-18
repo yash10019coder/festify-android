@@ -1,7 +1,7 @@
 # festify-android
 a app for manageing and registering for fests, events and classes for college students
 
-##To setup the project for starting developement 
+## To setup the project for starting developement 
 -------------------------------------------------
 
 1. Make a folder named festify.
