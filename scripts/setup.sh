@@ -24,4 +24,4 @@ bash ../festify-android/scripts/ktlint_download.sh
 bash ../festify-android/scripts/checkstyle_download.sh
 
 # Download buf
-bash ../fe-android/scripts/buf_download.sh
+bash ../festify-android/scripts/buf_download.sh
