@@ -1,10 +1,10 @@
 package com.iiitlucknow.festify
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.iiitlucknow.festify.Adapters.recyclerAdapter
 import com.iiitlucknow.festify.Adapters.sliderAdapter
 import com.iiitlucknow.festify.data.recyclerItem

@@ -2,16 +2,9 @@ package com.iiitlucknow.festify
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.iiitlucknow.festify.Adapters.recyclerAdapter
-import com.iiitlucknow.festify.Adapters.sliderAdapter
-import com.iiitlucknow.festify.data.recyclerItem
 import com.iiitlucknow.festify.databinding.ActivityMainBinding
-import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType
-import com.smarteist.autoimageslider.SliderAnimations
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
