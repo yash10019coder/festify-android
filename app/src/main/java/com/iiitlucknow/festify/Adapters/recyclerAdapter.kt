@@ -36,4 +36,3 @@ class recyclerAdapter(private var list: MutableList<recyclerItem>) :
         return list.size
     }
 }
-    
