@@ -11,7 +11,6 @@ class sliderAdapter(private var images: MutableList<Int>) :
     SliderViewAdapter<sliderAdapter.Holder>() {
     class Holder(itemView: View) : ViewHolder(itemView) {
         var slider_img: ImageView = itemView.findViewById(R.id.slider_img)
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup): Holder {
@@ -27,6 +26,5 @@ class sliderAdapter(private var images: MutableList<Int>) :
     override fun getCount(): Int {
         return images.size
     }
-
-
 }
+    
