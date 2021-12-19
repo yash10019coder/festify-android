@@ -6,4 +6,6 @@
     <string name="ai">AI-ML</string>
     <string name="design">DESIGNING</string>
     <string name="cyber_sec">CYBER SECURITY</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
