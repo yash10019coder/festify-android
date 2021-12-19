@@ -8,15 +8,32 @@
     <fragment
         android:id="@+id/eventsFragment"
         android:name="com.iiitlucknow.festify.EventsFragment"
-        android:label="EventsFragment" />
+        android:label="EventsFragment">
+        <action
+            android:id="@+id/action_eventsFragment_to_clickFragment"
+            app:destination="@id/clickFragment" />
+
+    </fragment>
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.iiitlucknow.festify.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home">
+
+    </fragment>
     <fragment
         android:id="@+id/teamsFragment"
         android:name="com.iiitlucknow.festify.TeamsFragment"
         android:label="fragment_teams"
         tools:layout="@layout/fragment_teams" />
+    <fragment
+        android:id="@+id/clickFragment"
+        android:name="com.iiitlucknow.festify.ClickFragment"
+        android:label="fragment_click"
+        tools:layout="@layout/fragment_click">
+        <argument
+            android:name="event"
+            app:argType="string" />
+    </fragment>
+
 </navigation>
