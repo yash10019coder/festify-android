@@ -46,4 +46,3 @@ class clickAdapter(private var list: MutableList<recyclerItemClick>) :
         return list.size
     }
 }
-    
