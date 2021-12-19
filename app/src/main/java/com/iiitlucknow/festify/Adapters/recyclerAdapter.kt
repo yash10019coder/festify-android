@@ -11,7 +11,6 @@ import com.iiitlucknow.festify.EventsFragmentDirections
 import com.iiitlucknow.festify.R
 import com.iiitlucknow.festify.data.recyclerItem
 
-
 class recyclerAdapter(private var list: MutableList<recyclerItem>) :
     RecyclerView.Adapter<recyclerAdapter.ViewHolder>() {
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -31,10 +30,10 @@ class recyclerAdapter(private var list: MutableList<recyclerItem>) :
         holder.recycler_text.text = holder.context.resources.getString(list[position].title)
         holder.itemView.setOnClickListener {
             val action =
-                EventsFragmentDirections.actionEventsFragmentToClickFragment(holder.recycler_text.text.toString())
+                EventsFragmentDirections
+                .actionEventsFragmentToClickFragment(holder.recycler_text.text.toString())
             Navigation.findNavController(holder.itemView).navigate(action)
         }
-
     }
 
     override fun getItemCount(): Int {
