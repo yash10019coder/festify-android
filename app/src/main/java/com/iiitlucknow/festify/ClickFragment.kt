@@ -10,7 +10,6 @@ import com.iiitlucknow.festify.Adapters.clickAdapter
 import com.iiitlucknow.festify.data.recyclerItemClick
 import com.iiitlucknow.festify.databinding.FragmentClickBinding
 
-
 class ClickFragment : Fragment() {
     private var _binding: FragmentClickBinding? = null
     private val binding get() = _binding!!
@@ -50,9 +49,7 @@ class ClickFragment : Fragment() {
         recyclerItemClick(R.drawable.designing_img, R.string.design, R.string.date),
         recyclerItemClick(R.drawable.designing_img, R.string.design, R.string.date),
         recyclerItemClick(R.drawable.designing_img, R.string.design, R.string.date)
-
     )
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -76,6 +73,4 @@ class ClickFragment : Fragment() {
         binding.clickRecycler.setHasFixedSize(true)
         return binding.root
     }
-
-
 }
