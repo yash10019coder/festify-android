@@ -18,7 +18,9 @@ class MainActivity : AppCompatActivity() {
 //        val navController = findNavController(R.id.fragmenthost)
 //        binding.bottomNavigationBar.setupWithNavController(navController)
 
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmenthost) as NavHostFragment
+        val navHostFragment = supportFragmentManager.findFragmentById(
+            R.id.fragmenthost
+        ) as NavHostFragment
         binding.bottomNavigationBar.setupWithNavController(navHostFragment.navController)
 
         supportActionBar?.hide()

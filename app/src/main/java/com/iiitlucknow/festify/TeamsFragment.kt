@@ -11,7 +11,8 @@ class TeamsFragment : Fragment() {
     private var _binding: FragmentTeamsBinding? = null
     private val binding get() = _binding!!
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentTeamsBinding.inflate(inflater, container, false)

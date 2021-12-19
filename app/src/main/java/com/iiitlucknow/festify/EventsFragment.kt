@@ -13,7 +13,6 @@ import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnima
 import com.smarteist.autoimageslider.SliderAnimations
 
 class EventsFragment : Fragment() {
-
     private var _binding: FragmentEventsBinding? = null
     private val binding get() = _binding!!
 
@@ -33,13 +32,14 @@ class EventsFragment : Fragment() {
         recyclerItem(R.drawable.design, R.string.design)
     )
 
-
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentEventsBinding.inflate(inflater, container, false)
-
+        _binding = FragmentEventsBinding.inflate(
+            inflater, container, false
+        )
         sliderAdapter = sliderAdapter(images)
         binding.apply {
             slide.setSliderAdapter(sliderAdapter)
