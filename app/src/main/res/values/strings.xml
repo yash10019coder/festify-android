@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">festify</string>
+    <string name="sample">IIIT LUCKNOW</string>
+    <string name="android">ANDROID</string>
+    <string name="web">WEB DEVELOPMENT</string>
+    <string name="ai">AI-ML</string>
+    <string name="design">DESIGNING</string>
+    <string name="cyber_sec">CYBER SECURITY</string>
 </resources>
