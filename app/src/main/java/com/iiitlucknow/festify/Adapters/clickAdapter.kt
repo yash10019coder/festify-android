@@ -35,7 +35,8 @@ class clickAdapter(private var list: MutableList<recyclerItemClick>) :
         holder.recycler_clicker_button.setOnClickListener {
             Toast.makeText(
                 holder.context,
-                "Registered for the Event " + holder.recycler_clicker_text.text + " on " + holder.date.text,
+                "Registered for the Event " + holder.recycler_clicker_text.text + 
+                    " on " + holder.date.text,
                 Toast.LENGTH_LONG
             ).show()
         }
@@ -44,5 +45,5 @@ class clickAdapter(private var list: MutableList<recyclerItemClick>) :
     override fun getItemCount(): Int {
         return list.size
     }
-
 }
+    
