@@ -15,7 +15,6 @@ import com.smarteist.autoimageslider.SliderAnimations
 class EventsFragment : Fragment() {
     private var _binding: FragmentEventsBinding? = null
     private val binding get() = _binding!!
-
     private lateinit var sliderAdapter: sliderAdapter
     private var images: MutableList<Int> = mutableListOf(
         R.drawable.android_img,
