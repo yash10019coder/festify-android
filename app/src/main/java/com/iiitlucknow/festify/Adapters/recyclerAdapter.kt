@@ -30,8 +30,8 @@ class recyclerAdapter(private var list: MutableList<recyclerItem>) :
         holder.recycler_text.text = holder.context.resources.getString(list[position].title)
         holder.itemView.setOnClickListener {
             val action =
-                EventsFragmentDirections
-                .actionEventsFragmentToClickFragment(holder.recycler_text.text.toString())
+                EventsFragmentDirections.actionEventsFragmentToClickFragment(
+                    holder.recycler_text.text.toString())
             Navigation.findNavController(holder.itemView).navigate(action)
         }
     }
