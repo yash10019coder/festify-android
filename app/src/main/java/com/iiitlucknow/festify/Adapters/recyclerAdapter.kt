@@ -5,8 +5,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
+import com.iiitlucknow.festify.EventsFragmentDirections
 import com.iiitlucknow.festify.R
 import com.iiitlucknow.festify.data.recyclerItem
 
@@ -28,7 +29,11 @@ class recyclerAdapter(private var list: MutableList<recyclerItem>) :
         holder.recycler_icon.setImageResource(list[position].icon)
         holder.recycler_text.text = holder.context.resources.getString(list[position].title)
         holder.itemView.setOnClickListener {
-            Toast.makeText(holder.context, holder.recycler_text.text, Toast.LENGTH_SHORT).show()
+            val action =
+                EventsFragmentDirections.actionEventsFragmentToClickFragment(
+                    holder.recycler_text.text.toString()
+                )
+            Navigation.findNavController(holder.itemView).navigate(action)
         }
     }
 

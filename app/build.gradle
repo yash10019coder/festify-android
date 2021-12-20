@@ -3,6 +3,7 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
+    id 'androidx.navigation.safeargs.kotlin'
 }
 
 android {
@@ -45,6 +46,9 @@ dependencies {
 
     //added deps for hilt.
     implementation "com.google.dagger:hilt-android:2.38.1"
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.3.5'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.3.5'
     kapt "com.google.dagger:hilt-compiler:2.38.1"
 
     testImplementation 'junit:junit:4.+'
