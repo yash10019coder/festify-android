@@ -1,5 +1,7 @@
 package com.iiitlucknow.festify.android.scripts.docs
 
+import java.io.File
+import java.io.FileInputStream
 import org.jetbrains.kotlin.cli.common.CLIConfigurationKeys
 import org.jetbrains.kotlin.cli.common.messages.MessageCollector
 import org.jetbrains.kotlin.cli.jvm.compiler.EnvironmentConfigFiles
@@ -21,8 +23,6 @@ import org.jetbrains.kotlin.psi.KtSecondaryConstructor
 import org.jetbrains.kotlin.psi.KtVariableDeclaration
 import org.oppia.android.scripts.common.RepositoryFile
 import org.oppia.android.scripts.proto.KdocValidityExemptions
-import java.io.File
-import java.io.FileInputStream
 
 /**
  * Script for ensuring the KDocs validity on all non-private:
@@ -102,7 +102,8 @@ fun main(vararg args: String) {
     logKdocPresenceFailures(kdocPresenceFailuresAfterExemption)
 
     if (kdocPresenceFailuresAfterExemption.isNotEmpty()) {
-        println("Please recheck\n"
+        println(
+            "Please recheck\n"
 //            "Refer to https://github.com/oppia/oppia-android/wiki/Static-Analysis-Checks" +
 //                    "#kdoc-validity-check for more details on how to fix this.\n"
         )
@@ -193,7 +194,11 @@ private fun recursiveKdocPresenceChecker(
             return memberMissingKdoc
         }
         elem is KtClass -> {
-            val classKdocMissing = checkIfKDocIsMissing(elem, file, kDocNotRequiredAnnotationEntryList)
+            val classKdocMissing = checkIfKDocIsMissing(
+                elem,
+                file,
+                kDocNotRequiredAnnotationEntryList
+            )
             val memberMissingKdoc = elem.declarations.flatMap { childElem ->
                 recursiveKdocPresenceChecker(
                     childElem,
@@ -204,7 +209,8 @@ private fun recursiveKdocPresenceChecker(
             return (memberMissingKdoc + classKdocMissing).filterNotNull()
         }
         elem is KtObjectDeclaration -> {
-            val objectKdocMissing = checkIfKDocIsMissing(elem, file, kDocNotRequiredAnnotationEntryList)
+            val objectKdocMissing =
+                checkIfKDocIsMissing(elem, file, kDocNotRequiredAnnotationEntryList)
             val memberMissingKdoc = elem.declarations.flatMap { childElem ->
                 recursiveKdocPresenceChecker(
                     childElem,
@@ -214,9 +220,15 @@ private fun recursiveKdocPresenceChecker(
             }
             return (memberMissingKdoc + objectKdocMissing).filterNotNull()
         }
-        elem is KtNamedFunction || elem is KtVariableDeclaration || elem is KtSecondaryConstructor ->
+        elem is KtNamedFunction ||
+                elem is KtVariableDeclaration ||
+                elem is KtSecondaryConstructor ->
             return listOf(
-                checkIfKDocIsMissing(elem as KtDeclaration, file, kDocNotRequiredAnnotationEntryList)
+                checkIfKDocIsMissing(
+                    elem as KtDeclaration,
+                    file,
+                    kDocNotRequiredAnnotationEntryList
+                )
             ).filterNotNull()
         else -> return emptyList()
     }
@@ -302,9 +314,10 @@ private fun retrieveLineNumberForElement(statement: KtElement, markEndOffset: Bo
 private fun logKdocPresenceFailures(kdocPresenceFailuresAfterExemption: List<Pair<File, Int?>>) {
     if (kdocPresenceFailuresAfterExemption.isNotEmpty()) {
         println("KDoc missing for files:")
-        kdocPresenceFailuresAfterExemption.sortedWith(compareBy({ it.first }, { it.second })).forEach {
-            println("- ${it.first}:${it.second}")
-        }
+        kdocPresenceFailuresAfterExemption.sortedWith(compareBy({ it.first }, { it.second }))
+            .forEach {
+                println("- ${it.first}:${it.second}")
+            }
         println()
     }
 }

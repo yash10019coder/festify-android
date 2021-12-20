@@ -39,9 +39,9 @@ class RepositoryFile() {
             return File(repoPath).walk().filter { file ->
                 val isProhibited = checkIfProhibitedFile(retrieveRelativeFilePath(file, repoPath))
                 !isProhibited &&
-                        file.isFile &&
-                        file.name.endsWith(expectedExtension) &&
-                        retrieveRelativeFilePath(file, repoPath) !in exemptionsList
+                    file.isFile &&
+                    file.name.endsWith(expectedExtension) &&
+                    retrieveRelativeFilePath(file, repoPath) !in exemptionsList
             }.toList()
         }
 
