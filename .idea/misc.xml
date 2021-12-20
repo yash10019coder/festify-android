@@ -1,18 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DesignSurface">
-    <option name="filePathToZoomLevelMap">
-      <map>
-        <entry key="..\:/Users/sairo/OneDrive/Desktop/FESTIFY/festify/app/src/main/res/drawable/button_background.xml" value="0.2388888888888889" />
-        <entry key="..\:/Users/sairo/OneDrive/Desktop/FESTIFY/festify/app/src/main/res/layout/activity_main.xml" value="0.11246200607902736" />
-        <entry key="..\:/Users/sairo/OneDrive/Desktop/FESTIFY/festify/app/src/main/res/layout/fragment_click.xml" value="0.13858695652173914" />
-        <entry key="..\:/Users/sairo/OneDrive/Desktop/FESTIFY/festify/app/src/main/res/layout/fragment_events.xml" value="0.12318840579710146" />
-        <entry key="..\:/Users/sairo/OneDrive/Desktop/FESTIFY/festify/app/src/main/res/layout/fragment_home.xml" value="0.16666666666666666" />
-        <entry key="..\:/Users/sairo/OneDrive/Desktop/FESTIFY/festify/app/src/main/res/layout/fragment_teams.xml" value="0.12318840579710146" />
-        <entry key="..\:/Users/sairo/OneDrive/Desktop/FESTIFY/festify/app/src/main/res/layout/recycler_item_clicker_layout.xml" value="0.264" />
-      </map>
-    </option>
-  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
