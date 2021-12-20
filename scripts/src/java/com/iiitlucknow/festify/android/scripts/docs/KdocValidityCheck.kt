@@ -221,8 +221,8 @@ private fun recursiveKdocPresenceChecker(
             return (memberMissingKdoc + objectKdocMissing).filterNotNull()
         }
         elem is KtNamedFunction ||
-                elem is KtVariableDeclaration ||
-                elem is KtSecondaryConstructor ->
+            elem is KtVariableDeclaration ||
+            elem is KtSecondaryConstructor ->
             return listOf(
                 checkIfKDocIsMissing(
                     elem as KtDeclaration,
