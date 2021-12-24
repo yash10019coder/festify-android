@@ -13,43 +13,47 @@ import com.iiitlucknow.android.festify.ViewModels.home_view_model
 import com.iiitlucknow.android.festify.data.my_events
 import com.iiitlucknow.android.festify.databinding.FragmentMydialogBinding
 
-
-class MyDialogFragment(myEvents: my_events, flag:Int) : DialogFragment() {
-    val myflag=flag
-    val new_event:my_events=myEvents
+class MyDialogFragment(myEvents: my_events, flag: Int) : DialogFragment() {
+    val myflag = flag
+    val new_event: my_events = myEvents
     private var _binding: FragmentMydialogBinding? = null
     private val binding get() = _binding!!
-    lateinit var vm:home_view_model
+    lateinit var vm: home_view_model
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentMydialogBinding.inflate(
             inflater, container, false
         )
         vm = ViewModelProvider(this).get(home_view_model::class.java)
-        if(myflag==1){
-            binding.headText.text="CONFIRM YOUR UNREGISTRATION"
+        if (myflag == 1) {
+            binding.headText.text = "CONFIRM YOUR UNREGISTRATION"
         }
         dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         binding.cancel.setOnClickListener {
-                dismiss()
+            dismiss()
         }
         binding.confirm.setOnClickListener {
-            if(myflag==0) {
+            if (myflag == 0) {
                 vm.addevent(new_event)
-                Toast.makeText(activity,"You have successfully registered for the event",Toast.LENGTH_SHORT).show()
-            }
-            else{
+                Toast.makeText(
+                    activity,
+                    "You have successfully registered for the event",
+                    Toast.LENGTH_SHORT
+                ).show()
+            } else {
                 vm.deleteevent(new_event)
-                Toast.makeText(activity,"You have successfully unregistered for the event",Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    activity,
+                    "You have successfully unregistered for the event",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
             dismiss()
         }
 
         return binding.root
     }
-
-
-
 }

@@ -6,9 +6,9 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 
 @Database(entities = [my_events::class], version = 1, exportSchema = false)
-abstract class database: RoomDatabase() {
+abstract class database : RoomDatabase() {
     abstract fun myDao(): dao
-    companion object{
+    companion object {
         @Volatile
         private var INSTANCE: database? = null
         fun getDatabase(context: Context): database {

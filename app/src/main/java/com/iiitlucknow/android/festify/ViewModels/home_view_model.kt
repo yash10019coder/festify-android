@@ -10,20 +10,20 @@ import com.iiitlucknow.android.festify.repo
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class home_view_model(application: Application):AndroidViewModel(application) {
-    private val  myrepo: repo
-    val allwords : LiveData<MutableList<my_events>>
+class home_view_model(application: Application) : AndroidViewModel(application) {
+    private val myrepo: repo
+    val allwords: LiveData<MutableList<my_events>>
     init {
         val dao = database.getDatabase(application).myDao()
-        myrepo =repo(dao)
-        allwords =myrepo.getwords
+        myrepo = repo(dao)
+        allwords = myrepo.getwords
     }
-    fun addevent(myEvents: my_events){
+    fun addevent(myEvents: my_events) {
         viewModelScope.launch(Dispatchers.IO) {
             myrepo.insertitem(myEvents)
         }
     }
-    fun deleteevent(myEvents: my_events){
+    fun deleteevent(myEvents: my_events) {
         viewModelScope.launch(Dispatchers.IO) {
             myrepo.deleteword(myEvents)
         }

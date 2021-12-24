@@ -14,7 +14,6 @@ import com.iiitlucknow.android.festify.R
 import com.iiitlucknow.android.festify.data.my_events
 import com.iiitlucknow.android.festify.data_classes.recyclerItemClick
 
-
 class clickAdapter(private var list: MutableList<recyclerItemClick>) :
     RecyclerView.Adapter<clickAdapter.ViewHolder>() {
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -32,15 +31,15 @@ class clickAdapter(private var list: MutableList<recyclerItemClick>) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val fm : FragmentManager = (holder.context as AppCompatActivity).supportFragmentManager
-        val item =list[position]
+        val fm: FragmentManager = (holder.context as AppCompatActivity).supportFragmentManager
+        val item = list[position]
         holder.recycler_clicker_text.text =
             holder.context.resources.getString(item.my_title)
         holder.recycler_clicker_img.setImageResource(item.my_img)
         holder.date.text = holder.context.resources.getString(item.date)
         holder.recycler_clicker_button.setOnClickListener {
-            val mydialog =MyDialogFragment(my_events(0,item.my_img,item.my_title,item.date),0)
-            mydialog.show(fm,"view")
+            val mydialog = MyDialogFragment(my_events(0, item.my_img, item.my_title, item.date), 0)
+            mydialog.show(fm, "view")
 //            Toast.makeText(
 //                holder.context,
 //                "Registered for the Event " + holder.recycler_clicker_text.text +

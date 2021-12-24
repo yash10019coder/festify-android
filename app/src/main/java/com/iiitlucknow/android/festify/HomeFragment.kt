@@ -20,10 +20,13 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        homeViewModel= ViewModelProvider(this).get(home_view_model::class.java)
-        homeViewModel.allwords.observe(viewLifecycleOwner,{
-            binding.homeRecycler.adapter=homeAdapter(it)
-        })
+        homeViewModel = ViewModelProvider(this).get(home_view_model::class.java)
+        homeViewModel.allwords.observe(
+            viewLifecycleOwner,
+            {
+                binding.homeRecycler.adapter = homeAdapter(it)
+            }
+        )
 
         binding.homeRecycler.setHasFixedSize(true)
 

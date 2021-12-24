@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         ) as NavHostFragment
         binding.bottomNavigationBar.setupWithNavController(navHostFragment.navController)
 
-        //supportActionBar?.hide()
+        // supportActionBar?.hide()
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (toggle.onOptionsItemSelected(item)) {
