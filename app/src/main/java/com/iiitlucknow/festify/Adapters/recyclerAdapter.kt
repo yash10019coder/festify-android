@@ -9,7 +9,7 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.iiitlucknow.festify.EventsFragmentDirections
 import com.iiitlucknow.festify.R
-import com.iiitlucknow.festify.data.recyclerItem
+import com.iiitlucknow.festify.data_classes.recyclerItem
 
 class recyclerAdapter(private var list: MutableList<recyclerItem>) :
     RecyclerView.Adapter<recyclerAdapter.ViewHolder>() {

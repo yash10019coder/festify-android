@@ -1,4 +1,4 @@
-package com.iiitlucknow.festify.data
+package com.iiitlucknow.festify.data_classes
 
 data class recyclerItemClick(
     val my_img: Int,

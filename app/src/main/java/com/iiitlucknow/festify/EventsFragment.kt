@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.iiitlucknow.festify.Adapters.recyclerAdapter
 import com.iiitlucknow.festify.Adapters.sliderAdapter
-import com.iiitlucknow.festify.data.recyclerItem
+import com.iiitlucknow.festify.data_classes.recyclerItem
 import com.iiitlucknow.festify.databinding.FragmentEventsBinding
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType
 import com.smarteist.autoimageslider.SliderAnimations

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".MyDialogFragment">
+
+    <RelativeLayout
+        android:layout_width="379dp"
+        android:layout_height="267dp"
+        android:background="@drawable/dialogback"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" >
+
+        <TextView
+            android:id="@+id/head_text"
+            android:layout_width="283dp"
+            android:layout_height="59dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="61dp"
+            android:fontFamily="@font/bakbak_one_regular"
+            android:gravity="center"
+            android:text="CONFIRM YOUR REGISTRATION"
+            android:textColor="@color/black"
+            android:textSize="18dp"
+
+            />
+
+        <Button
+            android:id="@+id/cancel"
+            android:layout_width="151dp"
+            android:layout_height="61dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="177dp"
+            android:text="CANCEL"
+            android:textSize="18dp"
+
+            />
+        <Button
+            android:id="@+id/confirm"
+            android:layout_width="151dp"
+            android:layout_height="61dp"
+            android:layout_marginLeft="209dp"
+            android:layout_marginTop="177dp"
+            android:text="CONFIRM"
+            android:textSize="18dp"
+
+
+            />
+
+
+
+
+
+
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

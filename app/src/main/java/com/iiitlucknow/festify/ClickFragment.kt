@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.iiitlucknow.festify.Adapters.clickAdapter
-import com.iiitlucknow.festify.data.recyclerItemClick
+import com.iiitlucknow.festify.data_classes.recyclerItemClick
 import com.iiitlucknow.festify.databinding.FragmentClickBinding
 
 class ClickFragment : Fragment() {

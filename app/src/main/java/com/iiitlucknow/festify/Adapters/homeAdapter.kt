@@ -1,23 +1,22 @@
 package com.iiitlucknow.festify.Adapters
 
+import android.graphics.Color
+import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.iiitlucknow.festify.MyDialogFragment
 import com.iiitlucknow.festify.R
 import com.iiitlucknow.festify.data.my_events
-import com.iiitlucknow.festify.data_classes.recyclerItemClick
 
-
-class clickAdapter(private var list: MutableList<recyclerItemClick>) :
-    RecyclerView.Adapter<clickAdapter.ViewHolder>() {
+class homeAdapter(private val list: MutableList<my_events>):RecyclerView.Adapter<homeAdapter.ViewHolder>() {
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val recycler_clicker_text: TextView = view.findViewById(R.id.recycler_clicker_text)
         val recycler_clicker_img: ImageView = view.findViewById(R.id.my_img)
@@ -25,7 +24,6 @@ class clickAdapter(private var list: MutableList<recyclerItemClick>) :
         val date: TextView = view.findViewById(R.id.date)
         val context = view.context
     }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view: View = LayoutInflater.from(parent.context)
             .inflate(R.layout.recycler_item_clicker_layout, parent, false)
@@ -39,15 +37,11 @@ class clickAdapter(private var list: MutableList<recyclerItemClick>) :
             holder.context.resources.getString(item.my_title)
         holder.recycler_clicker_img.setImageResource(item.my_img)
         holder.date.text = holder.context.resources.getString(item.date)
+        holder.recycler_clicker_button.text="UNREGISTER"
+        holder.recycler_clicker_button.background=ContextCompat.getDrawable(holder.context,R.drawable.unregister_background)
         holder.recycler_clicker_button.setOnClickListener {
-            val mydialog =MyDialogFragment(my_events(0,item.my_img,item.my_title,item.date),0)
-            mydialog.show(fm,"view")
-//            Toast.makeText(
-//                holder.context,
-//                "Registered for the Event " + holder.recycler_clicker_text.text +
-//                    " on " + holder.date.text,
-//                Toast.LENGTH_LONG
-//            ).show()
+            val mydialog = MyDialogFragment(my_events(item.id,item.my_img,item.my_title,item.date),1)
+            mydialog.show(fm,"my_view")
         }
     }
 
