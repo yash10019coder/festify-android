@@ -80,4 +80,7 @@ dependencies {
 
     //Circular Image View
     implementation 'de.hdodenhof:circleimageview:3.1.0'
+
+    //Coil- Image Loading Library
+    implementation("io.coil-kt:coil:1.4.0")
 }
