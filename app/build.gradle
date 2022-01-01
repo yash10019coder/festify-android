@@ -83,4 +83,7 @@ dependencies {
 
     //Coil- Image Loading Library
     implementation("io.coil-kt:coil:1.4.0")
+
+    //Image Cropping
+    api 'com.theartofdev.edmodo:android-image-cropper:2.8.+'
 }
