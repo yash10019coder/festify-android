@@ -7,10 +7,12 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Base64
+import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -48,6 +50,33 @@ class SignUpFragment : Fragment() {
                 Toast.makeText(context, "Try again", Toast.LENGTH_LONG).show()
             }
         })
+        binding.setEmail.doOnTextChanged { text, start, before, count ->
+            if (!email_check(text.toString())) {
+                binding.laySetEmail.error = "Invalid E-Mail Format"
+            } else {
+                binding.laySetEmail.error = null
+            }
+        }
+        binding.setName.doOnTextChanged { text, start, before, count ->
+            if (text.toString().isNotEmpty()) {
+                binding.laySetName.error = null
+            }
+        }
+        binding.setUsername.doOnTextChanged { text, start, before, count ->
+            if (text.toString().isNotEmpty()) {
+                binding.laySetUsername.error = null
+            }
+        }
+        binding.setPassword.doOnTextChanged { text, start, before, count ->
+            if (text.toString().isNotEmpty()) {
+                binding.laySetPassword.error = null
+            }
+        }
+        binding.setConfirmPassword.doOnTextChanged { text, start, before, count ->
+            if (text.toString().isNotEmpty()) {
+                binding.laySetConfirmPassword.error = null
+            }
+        }
         binding.selImg.setOnClickListener {
             pick_img_from_gallery()
         }
@@ -57,48 +86,30 @@ class SignUpFragment : Fragment() {
         binding.fSignUpBtn.setOnClickListener {
             if (binding.setName.text.toString().trim().isEmpty()) {
                 binding.laySetName.error = "Name cannot be empty"
-            } else {
-                binding.laySetName.error = null
             }
             if (binding.setUsername.text.toString().trim().isEmpty()) {
                 binding.laySetUsername.error = "UserName cannot be empty"
-            } else {
-                binding.laySetUsername.error = null
             }
             if (binding.setEmail.text.toString().trim().isEmpty()) {
                 binding.laySetEmail.error = "E-Mail cannot be empty"
-            } else {
-                binding.laySetEmail.error = null
             }
             if (binding.setPassword.text.toString().trim().isEmpty()) {
                 binding.laySetPassword.error = "Password cannot be empty"
-            } else {
-                binding.laySetPassword.error = null
             }
             if (binding.setConfirmPassword.text.toString().trim().isEmpty()) {
                 binding.laySetConfirmPassword.error = "Confirm Password cannot be empty"
-            } else {
-                binding.laySetConfirmPassword.error = null
             }
-            if (binding.setConfirmPassword.text.toString().trim() != binding.setPassword.toString().trim()
+            if (binding.setConfirmPassword.text.toString()
+                    .trim() != binding.setPassword.text.toString()
+                    .trim()
             ) {
                 binding.laySetConfirmPassword.error =
                     "Confirm Password is not the same as the Password"
-            } else {
-                binding.laySetConfirmPassword.error = null
-            }
-            if (binding.setConfirmPassword.text.toString().trim().isEmpty()) {
-                binding.laySetConfirmPassword.error = "Confirm Password cannot be empty"
             }
 
 
-            if (binding.setName.text.toString().trim().isNotEmpty() &&
-                binding.setUsername.text.toString().trim().isNotEmpty() &&
-                binding.setEmail.text.toString().trim().isNotEmpty() &&
-                binding.setPassword.text.toString().trim().isNotEmpty() &&
-                binding.setConfirmPassword.text.toString().trim().isNotEmpty() &&
-                my_data != null
-            ) {
+
+            if (checks()) {
                 uploadImage()
                 val my_post = my_post(
                     binding.setUsername.text.toString().trim(),
@@ -115,11 +126,30 @@ class SignUpFragment : Fragment() {
                     Toast.LENGTH_LONG
                 ).show()
             }
-
-
         }
-
         return binding.root
+    }
+
+    private fun checks(): Boolean {
+        if (binding.setName.text.toString().trim().isNotEmpty() &&
+            binding.setUsername.text.toString().trim().isNotEmpty() &&
+            binding.setEmail.text.toString().trim().isNotEmpty() &&
+            binding.setPassword.text.toString().trim().isNotEmpty() &&
+            binding.setConfirmPassword.text.toString().trim().isNotEmpty() &&
+            my_data != null && email_check(binding.setEmail.text.toString().trim())
+            && binding.setPassword.text.toString()
+                .trim() == binding.setConfirmPassword.text.toString().trim()
+        ) {
+            return true
+        }
+        return false
+    }
+
+    private fun email_check(text: String): Boolean {
+        if (Patterns.EMAIL_ADDRESS.matcher(text).matches()) {
+            return true
+        }
+        return false
     }
 
     private fun uploadImage() {
@@ -127,7 +157,6 @@ class SignUpFragment : Fragment() {
         bitmap.compress(Bitmap.CompressFormat.JPEG, 75, byteArrayOutputStream)
         val imageByte: ByteArray = byteArrayOutputStream.toByteArray()
         encodedImage = Base64.encodeToString(imageByte, Base64.DEFAULT)
-        Toast.makeText(context, encodedImage, Toast.LENGTH_LONG).show()
     }
 
     private fun pick_img_from_gallery() {
