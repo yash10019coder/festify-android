@@ -55,9 +55,10 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/lay_set_name"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="290dp"
-        android:layout_height="66dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="59dp"
         android:layout_marginLeft="59dp"
         android:layout_marginTop="265dp"
@@ -65,7 +66,10 @@
         android:hint="NAME"
         app:startIconDrawable="@drawable/ic_person"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:errorEnabled="true"
+        app:errorIconDrawable="@drawable/ic_error"
+        >
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/set_name"
@@ -76,10 +80,10 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-
+        android:id="@+id/lay_set_username"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="290dp"
-        android:layout_height="66dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="59dp"
         android:layout_marginLeft="59dp"
         android:layout_marginTop="347dp"
@@ -87,7 +91,10 @@
         app:startIconDrawable="@drawable/ic_person"
         app:endIconMode="clear_text"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:errorEnabled="true"
+        app:errorIconDrawable="@drawable/ic_error"
+        >
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/set_username"
@@ -98,9 +105,10 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/lay_set_email"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="290dp"
-        android:layout_height="66dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="59dp"
         android:layout_marginLeft="59dp"
         android:hint="E-MAIL"
@@ -108,7 +116,10 @@
         app:endIconMode="clear_text"
         app:startIconDrawable="@drawable/ic_email"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:errorEnabled="true"
+        app:errorIconDrawable="@drawable/ic_error"
+        >
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/set_email"
@@ -119,9 +130,10 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/lay_set_password"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="290dp"
-        android:layout_height="66dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="59dp"
         android:layout_marginLeft="59dp"
         android:hint="PASSWORD"
@@ -129,7 +141,10 @@
         app:endIconMode="password_toggle"
         android:layout_marginTop="515dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:errorEnabled="true"
+        app:errorIconDrawable="@drawable/ic_error"
+        >
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/set_password"
@@ -142,9 +157,10 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/lay_set_confirm_password"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="290dp"
-        android:layout_height="66dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="59dp"
         android:layout_marginLeft="59dp"
         android:layout_marginTop="600dp"
@@ -152,7 +168,10 @@
         app:endIconMode="password_toggle"
         app:startIconDrawable="@drawable/ic_password"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:errorEnabled="true"
+        app:errorIconDrawable="@drawable/ic_error"
+        >
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/set_confirm_password"
