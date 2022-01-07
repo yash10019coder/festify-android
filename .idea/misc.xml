@@ -9,10 +9,12 @@
         <entry key="..\:/Development/festify/app/src/main/res/layout-land/fragment_sign_up.xml" value="0.264" />
         <entry key="..\:/Development/festify/app/src/main/res/layout-land/fragment_start.xml" value="0.1" />
         <entry key="..\:/Development/festify/app/src/main/res/layout/activity_main.xml" value="0.1109375" />
+        <entry key="..\:/Development/festify/app/src/main/res/layout/fragment_click.xml" value="0.1286231884057971" />
         <entry key="..\:/Development/festify/app/src/main/res/layout/fragment_events.xml" value="0.1109375" />
         <entry key="..\:/Development/festify/app/src/main/res/layout/fragment_login.xml" value="0.1109375" />
         <entry key="..\:/Development/festify/app/src/main/res/layout/fragment_sign_up.xml" value="0.1109375" />
         <entry key="..\:/Development/festify/app/src/main/res/layout/fragment_start.xml" value="0.13020833333333334" />
+        <entry key="..\:/Development/festify/app/src/main/res/layout/recycler_item_clicker_layout.xml" value="0.1" />
       </map>
     </option>
   </component>
