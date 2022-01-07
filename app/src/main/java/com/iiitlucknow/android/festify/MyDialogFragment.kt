@@ -9,9 +9,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
-import com.iiitlucknow.android.festify.home.HomeViewModel
 import com.iiitlucknow.android.festify.data.my_events
 import com.iiitlucknow.android.festify.databinding.FragmentMydialogBinding
+import com.iiitlucknow.android.festify.home.HomeViewModel
 
 class MyDialogFragment(myEvents: my_events, flag: Int) : DialogFragment() {
     val myflag = flag

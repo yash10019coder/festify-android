@@ -37,7 +37,8 @@ class SignUpFragment : Fragment() {
     lateinit var s_msg: String
     lateinit var f_msg: String
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentSignUpBinding.inflate(inflater, container, false)
@@ -60,7 +61,7 @@ class SignUpFragment : Fragment() {
             } else {
                 try {
                     val jObjError = JSONObject(it.errorBody()!!.string())
-                    f_msg = jObjError.getString("message");
+                    f_msg = jObjError.getString("message")
                     if (f_msg.contains("username")) {
                         binding.laySetUsername!!.error = "Username is already taken"
                     }
@@ -70,8 +71,6 @@ class SignUpFragment : Fragment() {
                 } catch (e: Exception) {
                     Toast.makeText(context, e.message, Toast.LENGTH_LONG).show()
                 }
-
-
             }
         }
         binding.setEmail.doOnTextChanged { text, start, before, count ->
@@ -124,14 +123,12 @@ class SignUpFragment : Fragment() {
                 binding.laySetConfirmPassword!!.error = "Confirm Password cannot be empty"
             }
             if (binding.setConfirmPassword.text.toString()
-                    .trim() != binding.setPassword.text.toString()
+                .trim() != binding.setPassword.text.toString()
                     .trim()
             ) {
                 binding.laySetConfirmPassword!!.error =
                     "Confirm Password is not the same as the Password"
             }
-
-
 
             if (checks()) {
                 uploadImage()
@@ -160,8 +157,8 @@ class SignUpFragment : Fragment() {
             binding.setEmail.text.toString().trim().isNotEmpty() &&
             binding.setPassword.text.toString().trim().isNotEmpty() &&
             binding.setConfirmPassword.text.toString().trim().isNotEmpty() &&
-            my_data != null && email_check(binding.setEmail.text.toString().trim())
-            && binding.setPassword.text.toString()
+            my_data != null && email_check(binding.setEmail.text.toString().trim()) &&
+            binding.setPassword.text.toString()
                 .trim() == binding.setConfirmPassword.text.toString().trim()
         ) {
             return true
@@ -186,8 +183,7 @@ class SignUpFragment : Fragment() {
     private fun pick_img_from_gallery() {
         val intent = Intent(Intent.ACTION_PICK)
         intent.type = "image/*"
-        startActivityForResult(intent, IMAGE_PICK_CODE);
-
+        startActivityForResult(intent, IMAGE_PICK_CODE)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -219,5 +215,4 @@ class SignUpFragment : Fragment() {
             .setCropShape(CropImageView.CropShape.OVAL)
             .start(requireContext(), this)
     }
-
 }

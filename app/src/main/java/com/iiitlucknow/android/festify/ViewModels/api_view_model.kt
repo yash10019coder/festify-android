@@ -10,9 +10,6 @@ import com.iiitlucknow.android.festify.data_classes.my_post
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import org.json.JSONObject
-import java.lang.Exception
-
 
 class api_view_model(application: Application) : AndroidViewModel(application) {
     var myResponse: MutableLiveData<Response<default_response>> = MutableLiveData()
@@ -33,8 +30,6 @@ class api_view_model(application: Application) : AndroidViewModel(application) {
             override fun onFailure(call: Call<default_response>, t: Throwable) {
                 Toast.makeText(getApplication(), t.message, Toast.LENGTH_LONG).show()
             }
-
         })
     }
-
 }

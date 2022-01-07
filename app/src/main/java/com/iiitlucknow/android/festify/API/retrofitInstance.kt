@@ -5,7 +5,6 @@ import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
-
 object retrofitInstance {
     private const val BASE_URL =
         "https://festify-iiitl.herokuapp.com/"

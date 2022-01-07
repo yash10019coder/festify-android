@@ -1,7 +1,7 @@
 package com.iiitlucknow.android.festify
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 
 class Entrance : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
