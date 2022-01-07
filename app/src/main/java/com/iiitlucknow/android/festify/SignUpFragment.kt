@@ -37,43 +37,45 @@ class SignUpFragment : Fragment() {
     lateinit var s_msg: String
     lateinit var f_msg: String
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentSignUpBinding.inflate(inflater, container, false)
         viewModel = ViewModelProvider.AndroidViewModelFactory(requireActivity().application)
             .create(api_view_model::class.java)
-        viewModel.myResponse.observe(viewLifecycleOwner, {
+        viewModel.myResponse.observe(
+            viewLifecycleOwner,
+            {
 
-            if (it.isSuccessful) {
-                try {
-                    val jsonObject = JSONObject(Gson().toJson(it.body()))
-                    s_msg = jsonObject.getString("message")
-                } catch (e: JSONException) {
-                    e.printStackTrace()
-                }
-                Toast.makeText(context, s_msg, Toast.LENGTH_LONG).show()
-                val intent = Intent(activity, MainActivity::class.java)
-                intent.putExtra("p_img", my_data.toString())
-                intent.putExtra("u_name", binding.setUsername.text.toString().trim())
-                startActivity(intent)
-            } else {
-                try {
-                    val jObjError = JSONObject(it.errorBody()!!.string())
-                    f_msg=jObjError.getString("message");
-                    if(f_msg.contains("username")){
-                        binding.laySetUsername!!.error="Username is already taken"
+                if (it.isSuccessful) {
+                    try {
+                        val jsonObject = JSONObject(Gson().toJson(it.body()))
+                        s_msg = jsonObject.getString("message")
+                    } catch (e: JSONException) {
+                        e.printStackTrace()
                     }
-                    if(f_msg.contains("email")){
-                        binding.laySetEmail!!.error="E-Mail is already taken"
+                    Toast.makeText(context, s_msg, Toast.LENGTH_LONG).show()
+                    val intent = Intent(activity, MainActivity::class.java)
+                    intent.putExtra("p_img", my_data.toString())
+                    intent.putExtra("u_name", binding.setUsername.text.toString().trim())
+                    startActivity(intent)
+                } else {
+                    try {
+                        val jObjError = JSONObject(it.errorBody()!!.string())
+                        f_msg = jObjError.getString("message")
+                        if (f_msg.contains("username")) {
+                            binding.laySetUsername!!.error = "Username is already taken"
+                        }
+                        if (f_msg.contains("email")) {
+                            binding.laySetEmail!!.error = "E-Mail is already taken"
+                        }
+                    } catch (e: Exception) {
+                        Toast.makeText(context, e.message, Toast.LENGTH_LONG).show()
                     }
-                } catch (e: Exception) {
-                    Toast.makeText(context, e.message, Toast.LENGTH_LONG).show()
                 }
-
-
             }
-        })
+        )
         binding.setEmail.doOnTextChanged { text, start, before, count ->
             if (!email_check(text.toString())) {
                 binding.laySetEmail!!.error = "Invalid E-Mail Format"
@@ -124,14 +126,12 @@ class SignUpFragment : Fragment() {
                 binding.laySetConfirmPassword!!.error = "Confirm Password cannot be empty"
             }
             if (binding.setConfirmPassword.text.toString()
-                    .trim() != binding.setPassword.text.toString()
+                .trim() != binding.setPassword.text.toString()
                     .trim()
             ) {
                 binding.laySetConfirmPassword!!.error =
                     "Confirm Password is not the same as the Password"
             }
-
-
 
             if (checks()) {
                 uploadImage()
@@ -160,8 +160,8 @@ class SignUpFragment : Fragment() {
             binding.setEmail.text.toString().trim().isNotEmpty() &&
             binding.setPassword.text.toString().trim().isNotEmpty() &&
             binding.setConfirmPassword.text.toString().trim().isNotEmpty() &&
-            my_data != null && email_check(binding.setEmail.text.toString().trim())
-            && binding.setPassword.text.toString()
+            my_data != null && email_check(binding.setEmail.text.toString().trim()) &&
+            binding.setPassword.text.toString()
                 .trim() == binding.setConfirmPassword.text.toString().trim()
         ) {
             return true
@@ -186,8 +186,7 @@ class SignUpFragment : Fragment() {
     private fun pick_img_from_gallery() {
         val intent = Intent(Intent.ACTION_PICK)
         intent.type = "image/*"
-        startActivityForResult(intent, IMAGE_PICK_CODE);
-
+        startActivityForResult(intent, IMAGE_PICK_CODE)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -219,5 +218,4 @@ class SignUpFragment : Fragment() {
             .setCropShape(CropImageView.CropShape.OVAL)
             .start(requireContext(), this)
     }
-
 }
