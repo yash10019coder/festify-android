@@ -8,8 +8,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.iiitlucknow.android.festify.Adapters.homeAdapter
 import com.iiitlucknow.android.festify.databinding.FragmentHomeBinding
+import dagger.hilt.android.scopes.FragmentScoped
 import javax.inject.Inject
 
+@FragmentScoped
 class HomeFragmentPresenter @Inject constructor(
     private val homeViewModel: HomeViewModel,
     private val activity: AppCompatActivity,

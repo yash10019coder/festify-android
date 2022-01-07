@@ -43,7 +43,7 @@ class SignUpFragment : Fragment() {
         _binding = FragmentSignUpBinding.inflate(inflater, container, false)
         viewModel = ViewModelProvider.AndroidViewModelFactory(requireActivity().application)
             .create(api_view_model::class.java)
-        viewModel.myResponse.observe(viewLifecycleOwner, {
+        viewModel.myResponse.observe(viewLifecycleOwner) {
 
             if (it.isSuccessful) {
                 try {
@@ -60,12 +60,12 @@ class SignUpFragment : Fragment() {
             } else {
                 try {
                     val jObjError = JSONObject(it.errorBody()!!.string())
-                    f_msg=jObjError.getString("message");
-                    if(f_msg.contains("username")){
-                        binding.laySetUsername.error="Username is already taken"
+                    f_msg = jObjError.getString("message");
+                    if (f_msg.contains("username")) {
+                        binding.laySetUsername!!.error = "Username is already taken"
                     }
-                    if(f_msg.contains("email")){
-                        binding.laySetEmail.error="E-Mail is already taken"
+                    if (f_msg.contains("email")) {
+                        binding.laySetEmail!!.error = "E-Mail is already taken"
                     }
                 } catch (e: Exception) {
                     Toast.makeText(context, e.message, Toast.LENGTH_LONG).show()
@@ -73,32 +73,32 @@ class SignUpFragment : Fragment() {
 
 
             }
-        })
+        }
         binding.setEmail.doOnTextChanged { text, start, before, count ->
             if (!email_check(text.toString())) {
-                binding.laySetEmail.error = "Invalid E-Mail Format"
+                binding.laySetEmail!!.error = "Invalid E-Mail Format"
             } else {
-                binding.laySetEmail.error = null
+                binding.laySetEmail!!.error = null
             }
         }
         binding.setName.doOnTextChanged { text, start, before, count ->
             if (text.toString().isNotEmpty()) {
-                binding.laySetName.error = null
+                binding.laySetName!!.error = null
             }
         }
         binding.setUsername.doOnTextChanged { text, start, before, count ->
             if (text.toString().isNotEmpty()) {
-                binding.laySetUsername.error = null
+                binding.laySetUsername!!.error = null
             }
         }
         binding.setPassword.doOnTextChanged { text, start, before, count ->
             if (text.toString().isNotEmpty()) {
-                binding.laySetPassword.error = null
+                binding.laySetPassword!!.error = null
             }
         }
         binding.setConfirmPassword.doOnTextChanged { text, start, before, count ->
             if (text.toString().isNotEmpty()) {
-                binding.laySetConfirmPassword.error = null
+                binding.laySetConfirmPassword!!.error = null
             }
         }
         binding.selImg.setOnClickListener {
@@ -109,25 +109,25 @@ class SignUpFragment : Fragment() {
         }
         binding.fSignUpBtn.setOnClickListener {
             if (binding.setName.text.toString().trim().isEmpty()) {
-                binding.laySetName.error = "Name cannot be empty"
+                binding.laySetName!!.error = "Name cannot be empty"
             }
             if (binding.setUsername.text.toString().trim().isEmpty()) {
-                binding.laySetUsername.error = "UserName cannot be empty"
+                binding.laySetUsername!!.error = "UserName cannot be empty"
             }
             if (binding.setEmail.text.toString().trim().isEmpty()) {
-                binding.laySetEmail.error = "E-Mail cannot be empty"
+                binding.laySetEmail!!.error = "E-Mail cannot be empty"
             }
             if (binding.setPassword.text.toString().trim().isEmpty()) {
-                binding.laySetPassword.error = "Password cannot be empty"
+                binding.laySetPassword!!.error = "Password cannot be empty"
             }
             if (binding.setConfirmPassword.text.toString().trim().isEmpty()) {
-                binding.laySetConfirmPassword.error = "Confirm Password cannot be empty"
+                binding.laySetConfirmPassword!!.error = "Confirm Password cannot be empty"
             }
             if (binding.setConfirmPassword.text.toString()
                     .trim() != binding.setPassword.text.toString()
                     .trim()
             ) {
-                binding.laySetConfirmPassword.error =
+                binding.laySetConfirmPassword!!.error =
                     "Confirm Password is not the same as the Password"
             }
 
