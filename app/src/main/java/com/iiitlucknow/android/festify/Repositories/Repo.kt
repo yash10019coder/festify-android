@@ -1,4 +1,4 @@
-package com.iiitlucknow.android.festify
+package com.iiitlucknow.android.festify.Repositories
 
 import androidx.lifecycle.LiveData
 import com.iiitlucknow.android.festify.data.dao
