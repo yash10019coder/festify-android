@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.iiitlucknow.android.festify.HomeFragment"
+        android:name="com.iiitlucknow.android.festify.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home">
 

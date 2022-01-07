@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
-import com.iiitlucknow.android.festify.ViewModels.home_view_model
+import com.iiitlucknow.android.festify.home.HomeViewModel
 import com.iiitlucknow.android.festify.data.my_events
 import com.iiitlucknow.android.festify.databinding.FragmentMydialogBinding
 
@@ -18,7 +18,7 @@ class MyDialogFragment(myEvents: my_events, flag: Int) : DialogFragment() {
     val new_event: my_events = myEvents
     private var _binding: FragmentMydialogBinding? = null
     private val binding get() = _binding!!
-    lateinit var vm: home_view_model
+    lateinit var vm: HomeViewModel
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -27,7 +27,7 @@ class MyDialogFragment(myEvents: my_events, flag: Int) : DialogFragment() {
         _binding = FragmentMydialogBinding.inflate(
             inflater, container, false
         )
-        vm = ViewModelProvider(this).get(home_view_model::class.java)
+        vm = ViewModelProvider(this).get(HomeViewModel::class.java)
         if (myflag == 1) {
             binding.headText.text = "CONFIRM YOUR UNREGISTRATION"
         }
