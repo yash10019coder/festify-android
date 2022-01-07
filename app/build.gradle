@@ -89,6 +89,9 @@ dependencies {
     //Image Cropping
     api 'com.theartofdev.edmodo:android-image-cropper:2.8.+'
 
+    //Gson
+    implementation 'com.google.code.gson:gson:2.8.9'
+
     // Moshi
     implementation 'com.squareup.moshi:moshi-kotlin:1.11.0'
 
