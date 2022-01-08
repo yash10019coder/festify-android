@@ -9,7 +9,7 @@ Possible interested attendees may miss out on some event due to lack of informat
 
 #### Proposed Solution:
 -------------------------------------------------
-This project aims to minimize the hassle and ease the process for people willing to organize and attend some events. People willing to attend some events just have to sign up once filling their information and then not worry about filling different forms for different events. The application fetches list of updated events from the backend server and presents them to the user category wise, where they can choose some event which interests them and register for with just touch of a button. The application always maintains a list of events for which the user has registered already so they can manage their time accordingly. User also has an option to cancel registration for an event by just another touch. This greatly eases the process for people attending and also for the people organizing the event as they also can just fetch out the details of people registering for the event.
+This project aims to minimize the hassle and ease the process for people willing to organize and attend some events. People willing to attend some events just have to sign up once filling their information and then not worry about filling different forms for different events. The application fetches list of updated events and presents them to the user category wise, where they can choose some event which interests them and register for with just touch of a button. The application always maintains a list of events for which the user has registered already so they can manage their time accordingly. User also has an option to cancel registration for an event by just another touch. This greatly eases the process for people attending and also for the people organizing the event as they also can just fetch out the details of people registering for the event.
 
 #### Functionality & Concepts used:
 -------------------------------------------------
@@ -44,7 +44,9 @@ The app uses Navigation component using a navGraph and a navHostFragment in pair
 #### Application Link & Future Scope :
 -------------------------------------------------
 -applink-<br>
+
 - The App is still in Alpha phase and we have to make much changes to it.
+- We are working on a way to fetch the data of events from the backend server
 - We are adding a “Teams” Fragment which is used to find teammates to participate together in a team-event.
 We will introduce a new fragment for users to post pictures and show their excitement towards the event
 
