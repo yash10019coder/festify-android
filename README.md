@@ -49,7 +49,7 @@ The app uses Navigation component using a navGraph and a navHostFragment in pair
 
 #### Application Link & Future Scope :
 -------------------------------------------------
--applink-<br>
+[applink](https://drive.google.com/file/d/1yiIqOEHv8ai26nImwrYlxA6YDlQEfTo9/view?usp=sharing)<br>
 
 - The App is still in Alpha phase and we have to make much changes to it.
 - We are working on a way to fetch the data of events from the backend server
