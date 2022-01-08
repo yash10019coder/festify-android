@@ -8,17 +8,12 @@
     tools:context=".start">
 
 
-    <TextView
-        android:id="@+id/heading"
+    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="104dp"
-        android:layout_marginLeft="104dp"
-        android:layout_marginTop="244dp"
-        android:fontFamily="@font/bakbak_one_regular"
-        android:gravity="center"
-        android:text="FESTIFY"
-        android:textSize="50dp"
+        android:src="@drawable/ic_logo_start"
+        app:layout_constraintBottom_toTopOf="@+id/login_btn"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
