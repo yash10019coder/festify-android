@@ -11,14 +11,11 @@ Possible interested attendees may miss out on some event due to lack of informat
 #### Proposed Solution:
 -------------------------------------------------
 This project aims to minimize the hassle and ease the process for people willing to organize and attend some events. People willing to attend some events just have to sign up once filling their information and then not worry about filling different forms for different events. The application fetches list of updated events and presents them to the user category wise, where they can choose some event which interests them and register for with just touch of a button. The application always maintains a list of events for which the user has registered already so they can manage their time accordingly. User also has an option to cancel registration for an event by just another touch. This greatly eases the process for people attending and also for the people organizing the event as they also can just fetch out the details of people registering for the event.
-
-<img src="https://user-images.githubusercontent.com/78897906/148649277-156862d8-52e4-444c-aea8-d196ea281d2b.jpeg" width="220">
-<img src="https://user-images.githubusercontent.com/78897906/148649330-ecaf01a9-6af6-471a-bb4f-df2ab8ccf38b.jpeg" width="220">
-<img src="https://user-images.githubusercontent.com/78897906/148649680-ee8e57a2-60c9-47cd-bd81-792fc98ee22f.jpeg" width="220">
-<img src="https://user-images.githubusercontent.com/78897906/148649683-f03fee25-078a-49c6-9df9-1744d9121390.jpeg" width="220">
-<img src="https://user-images.githubusercontent.com/78897906/148649690-dc429aa1-dbcc-4c37-b888-4cc867939080.jpeg" width="220">
-<img src="https://user-images.githubusercontent.com/78897906/148649694-4ea6e0c9-2dfa-4313-bff8-f9df7e6e545a.jpeg" width="220">
-<img src="https://user-images.githubusercontent.com/78897906/148649696-529fa627-8d1b-4fc1-a4ad-63c44645b100.jpeg" width="220">
+| | | |
+| - | - | - |
+|<img src="https://user-images.githubusercontent.com/78897906/148649277-156862d8-52e4-444c-aea8-d196ea281d2b.jpeg" width="220">| <img src="https://user-images.githubusercontent.com/78897906/148649330-ecaf01a9-6af6-471a-bb4f-df2ab8ccf38b.jpeg" width="220"> | <img src="https://user-images.githubusercontent.com/78897906/148649680-ee8e57a2-60c9-47cd-bd81-792fc98ee22f.jpeg" width="220">|
+|<img src="https://user-images.githubusercontent.com/78897906/148649683-f03fee25-078a-49c6-9df9-1744d9121390.jpeg" width="220">|<img src="https://user-images.githubusercontent.com/78897906/148649690-dc429aa1-dbcc-4c37-b888-4cc867939080.jpeg" width="220">|<img src="https://user-images.githubusercontent.com/78897906/148649694-4ea6e0c9-2dfa-4313-bff8-f9df7e6e545a.jpeg" width="220">|
+|<img src="https://user-images.githubusercontent.com/78897906/148649696-529fa627-8d1b-4fc1-a4ad-63c44645b100.jpeg" width="220">| | |
 
 #### Functionality & Concepts used:
 -------------------------------------------------
