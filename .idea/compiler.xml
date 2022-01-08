@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
-    <bytecodeTargetLevel target="1.7" />
+    <bytecodeTargetLevel target="1.7">
+      <module name="festify-android.app" target="11" />
+      <module name="festify-android.data" target="11" />
+      <module name="festify-android.domain" target="11" />
+      <module name="festify-android.testing" target="11" />
+      <module name="festify-android.utility" target="11" />
+    </bytecodeTargetLevel>
   </component>
 </project>
