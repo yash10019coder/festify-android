@@ -15,4 +15,11 @@ interface my_api {
         @Field("userEmail") userEmail: String,
         @Field("userPhoto") userPhoto: String
     ): Call<default_response>
+
+    @FormUrlEncoded
+    @POST("user/login")
+    fun loginuser(
+        @Field("usernameOrEmail") userName: String,
+        @Field("password") userPassword: String,
+    ): Call<default_response>
 }

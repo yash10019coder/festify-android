@@ -17,7 +17,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.google.gson.Gson
-import com.iiitlucknow.android.festify.ViewModels.api_view_model
+import com.iiitlucknow.android.festify.ViewModels.Signup_view_model
 import com.iiitlucknow.android.festify.data_classes.my_post
 import com.iiitlucknow.android.festify.databinding.FragmentSignUpBinding
 import com.theartofdev.edmodo.cropper.CropImage
@@ -31,7 +31,7 @@ class SignUpFragment : Fragment() {
     private val IMAGE_PICK_CODE = 1000
     private var _binding: FragmentSignUpBinding? = null
     private val binding get() = _binding!!
-    private lateinit var viewModel: api_view_model
+    private lateinit var viewModel: Signup_view_model
     lateinit var bitmap: Bitmap
     lateinit var encodedImage: String
     lateinit var s_msg: String
@@ -43,8 +43,8 @@ class SignUpFragment : Fragment() {
     ): View? {
         _binding = FragmentSignUpBinding.inflate(inflater, container, false)
         viewModel = ViewModelProvider.AndroidViewModelFactory(requireActivity().application)
-            .create(api_view_model::class.java)
-        viewModel.myResponse.observe(
+            .create(Signup_view_model::class.java)
+        viewModel.sign_Response.observe(
             viewLifecycleOwner,
             {
 
