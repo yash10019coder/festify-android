@@ -12,7 +12,7 @@ import dagger.hilt.android.scopes.FragmentScoped
 
 @FragmentScoped
 class HomeFragment : Fragment() {
-    private val homeViewModel: Hom1eViewModel by viewModels()
+    private val homeViewModel: HomeViewModel by viewModels()
 
     lateinit var binding: FragmentHomeBinding
     override fun onCreateView(
