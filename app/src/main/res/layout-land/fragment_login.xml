@@ -63,7 +63,7 @@
         android:layout_width="340dp"
         android:layout_height="71dp"
         android:layout_marginTop="23dp"
-        android:text="LOG IN"
+        android:text="LOGIN"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
