@@ -10,9 +10,9 @@ import androidx.appcompat.widget.AppCompatButton
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
-import com.iiitlucknow.android.festify.event.EventRegisterDialogFragment
-import com.iiitlucknow.android.festify.R
 import com.iiitlucknow.android.data.persistance.my_events
+import com.iiitlucknow.android.festify.R
+import com.iiitlucknow.android.festify.event.EventRegisterDialogFragment
 
 class HomeAdapter(
     private val list: MutableList<my_events>
@@ -43,7 +43,10 @@ class HomeAdapter(
             ContextCompat.getDrawable(holder.context, R.drawable.unregister_background)
         holder.recycler_clicker_button.setOnClickListener {
             val mydialog =
-                EventRegisterDialogFragment(my_events(item.id, item.my_img, item.my_title, item.date), 1)
+                EventRegisterDialogFragment(
+                    my_events(item.id, item.my_img, item.my_title, item.date),
+                    1
+                )
             mydialog.show(fm, "my_view")
         }
     }

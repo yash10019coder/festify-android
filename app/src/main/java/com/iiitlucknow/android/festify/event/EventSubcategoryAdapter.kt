@@ -37,7 +37,10 @@ class EventSubcategoryAdapter(private var list: MutableList<EventRecyclerItemCli
         holder.recycler_clicker_img.setImageResource(item.my_img)
         holder.date.text = holder.context.resources.getString(item.date)
         holder.recycler_clicker_button.setOnClickListener {
-            val mydialog = EventRegisterDialogFragment(my_events(0, item.my_img, item.my_title, item.date), 0)
+            val mydialog = EventRegisterDialogFragment(
+                my_events(0, item.my_img, item.my_title, item.date),
+                0
+            )
             mydialog.show(fm, "view")
 //            Toast.makeText(
 //                holder.context,

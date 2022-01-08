@@ -4,7 +4,7 @@ import android.app.Application
 import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import com.iiitlucknow.android.data.backends.retrofitInstance
+import com.iiitlucknow.android.data.backends.RetrofitInstance
 import com.iiitlucknow.android.data.backends.model.DefaultResponse
 import com.iiitlucknow.android.data.backends.model.SignUpRequestBody
 import retrofit2.Call
@@ -14,7 +14,7 @@ import retrofit2.Response
 class SignUpViewModel(application: Application) : AndroidViewModel(application) {
     var sign_Response: MutableLiveData<Response<DefaultResponse>> = MutableLiveData()
     fun pushPost(post: SignUpRequestBody) {
-        retrofitInstance.api.createUser(
+        RetrofitInstance.api.createUser(
             post.userName,
             post.userPassword,
             post.userEmail,
