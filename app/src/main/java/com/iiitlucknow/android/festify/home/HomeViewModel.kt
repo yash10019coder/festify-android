@@ -4,22 +4,22 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
-import com.iiitlucknow.android.festify.Repositories.repo
+import com.iiitlucknow.android.festify.Repositories.Repo
 import com.iiitlucknow.android.festify.data.database
 import com.iiitlucknow.android.festify.data.my_events
 import dagger.hilt.android.scopes.ViewModelScoped
+import javax.inject.Inject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 @ViewModelScoped
 class HomeViewModel @Inject constructor(application: Application) : AndroidViewModel(application) {
-    private val myrepo: repo
+    private val myrepo: Repo
     val allwords: LiveData<MutableList<my_events>>
 
     init {
         val dao = database.getDatabase(application).myDao()
-        myrepo = repo(dao)
+        myrepo = Repo(dao)
         allwords = myrepo.getwords
     }
 
