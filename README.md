@@ -15,29 +15,29 @@ This project aims to minimize the hassle and ease the process for people willing
 -------------------------------------------------
 - The App has an interactive interface which helps the user to register/unregister for an event .
 
-- POST request :
+- **POST request** :
 For the Login and Signup screens user posts his/her data and with the help of a post request we send this data to a backend server and the server checks whether the details were good enough to go or need to be modified and provides an appropriate response according to it
 
-- Constraint Layout : 
+- **Constraint Layout** : 
 Most of the activities in the app uses a flexible constraint layout, which is easy to handle for different screen sizes
 
-- SliderView:
+- **SliderView** :
 To promote some events we have used a SliderView which slides automatically after 2 secs and gets updated with another event.
 
-- RecyclerView:
+- **RecyclerView** :
 To represent the different type of tech stacks and different events in a fest we use a RecyclerView which arranges them in an ordered scroll-able list.
 
-- Room Database:
+- **Room Database** :
 So when a user registers for an event a duplicate of that specific view goes into HOME fragment and we could see the events in an order of registered time in the HOME fragment. Even after closing and opening the app the events registered remains same with the help of Room Database
 
-- ViewModels:
+- **ViewModels** :
 We have created Viewmodels for DataBase and API calls related fragments so the data survives configuration changes while also following a better architecture.
 
-- LiveData:
+- **LiveData** :
 For Room Database when the data gets updated i.e., added or deleted, the app gets notified that there was a change and changes the RecyclerView accordingly
 For API calls we get a response whenever we post the data,so whenever we post a new data then app gets notified that there was a change and responds accordingly
 
-- Navigation Component and BottomNavigation
+- **Navigation Component and BottomNavigation** :
 The app uses Navigation component using a navGraph and a navHostFragment in pair with BottomNavigation to let user switch between various fragments with ease.
 
 
