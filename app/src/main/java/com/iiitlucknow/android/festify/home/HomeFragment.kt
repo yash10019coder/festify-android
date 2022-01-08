@@ -5,13 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.iiitlucknow.android.festify.Adapters.homeAdapter
 import com.iiitlucknow.android.festify.databinding.FragmentHomeBinding
-import javax.inject.Inject
+import dagger.hilt.android.scopes.FragmentScoped
 
+@FragmentScoped
 class HomeFragment : Fragment() {
-    @Inject
-    lateinit var homeViewModel: HomeViewModel
+    private val homeViewModel: HomeViewModel by viewModels()
 
     lateinit var binding: FragmentHomeBinding
     override fun onCreateView(

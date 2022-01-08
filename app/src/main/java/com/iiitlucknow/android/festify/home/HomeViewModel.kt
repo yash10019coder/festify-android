@@ -10,9 +10,10 @@ import com.iiitlucknow.android.festify.data.my_events
 import dagger.hilt.android.scopes.ViewModelScoped
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @ViewModelScoped
-class HomeViewModel(application: Application) : AndroidViewModel(application) {
+class HomeViewModel @Inject constructor(application: Application) : AndroidViewModel(application) {
     private val myrepo: repo
     val allwords: LiveData<MutableList<my_events>>
 
