@@ -13,10 +13,11 @@
         android:layout_marginStart="100dp"
         android:layout_marginLeft="100dp"
         android:layout_marginTop="10dp"
+        android:fontFamily="@font/autour_one"
         android:gravity="center"
-        android:text="SIGN UP"
+        android:text="Sign up"
         android:textColor="@color/black"
-        android:textSize="30dp"
+        android:textSize="25dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -28,7 +29,7 @@
         android:layout_marginLeft="64dp"
         android:layout_marginTop="5dp"
         android:gravity="center"
-        android:text="Create an account, It’s free"
+        android:text="Create an account, It’s free!"
         android:textColor="#9C9C9B"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
