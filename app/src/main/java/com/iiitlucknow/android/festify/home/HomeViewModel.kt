@@ -7,11 +7,11 @@ import androidx.lifecycle.viewModelScope
 import com.iiitlucknow.android.festify.Repositories.repo
 import com.iiitlucknow.android.festify.data.database
 import com.iiitlucknow.android.festify.data.my_events
-import dagger.hilt.android.scopes.FragmentScoped
+import dagger.hilt.android.scopes.ViewModelScoped
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-@FragmentScoped
+@ViewModelScoped
 class HomeViewModel(application: Application) : AndroidViewModel(application) {
     private val myrepo: repo
     val allwords: LiveData<MutableList<my_events>>
