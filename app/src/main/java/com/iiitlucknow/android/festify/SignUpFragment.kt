@@ -17,7 +17,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.google.gson.Gson
-import com.iiitlucknow.android.festify.ViewModels.api_view_model
+import com.iiitlucknow.android.festify.ViewModels.Signup_view_model
 import com.iiitlucknow.android.festify.data_classes.my_post
 import com.iiitlucknow.android.festify.databinding.FragmentSignUpBinding
 import com.theartofdev.edmodo.cropper.CropImage
@@ -31,7 +31,7 @@ class SignUpFragment : Fragment() {
     private val IMAGE_PICK_CODE = 1000
     private var _binding: FragmentSignUpBinding? = null
     private val binding get() = _binding!!
-    private lateinit var viewModel: api_view_model
+    private lateinit var viewModel: Signup_view_model
     lateinit var bitmap: Bitmap
     lateinit var encodedImage: String
     lateinit var s_msg: String
@@ -43,36 +43,39 @@ class SignUpFragment : Fragment() {
     ): View? {
         _binding = FragmentSignUpBinding.inflate(inflater, container, false)
         viewModel = ViewModelProvider.AndroidViewModelFactory(requireActivity().application)
-            .create(api_view_model::class.java)
-        viewModel.myResponse.observe(viewLifecycleOwner) {
+            .create(Signup_view_model::class.java)
+        viewModel.sign_Response.observe(
+            viewLifecycleOwner,
+            {
 
-            if (it.isSuccessful) {
-                try {
-                    val jsonObject = JSONObject(Gson().toJson(it.body()))
-                    s_msg = jsonObject.getString("message")
-                } catch (e: JSONException) {
-                    e.printStackTrace()
-                }
-                Toast.makeText(context, s_msg, Toast.LENGTH_LONG).show()
-                val intent = Intent(activity, MainActivity::class.java)
-                intent.putExtra("p_img", my_data.toString())
-                intent.putExtra("u_name", binding.setUsername.text.toString().trim())
-                startActivity(intent)
-            } else {
-                try {
-                    val jObjError = JSONObject(it.errorBody()!!.string())
-                    f_msg = jObjError.getString("message")
-                    if (f_msg.contains("username")) {
-                        binding.laySetUsername!!.error = "Username is already taken"
+                if (it.isSuccessful) {
+                    try {
+                        val jsonObject = JSONObject(Gson().toJson(it.body()))
+                        s_msg = jsonObject.getString("message")
+                    } catch (e: JSONException) {
+                        e.printStackTrace()
                     }
-                    if (f_msg.contains("email")) {
-                        binding.laySetEmail!!.error = "E-Mail is already taken"
+                    Toast.makeText(context, s_msg, Toast.LENGTH_LONG).show()
+                    val intent = Intent(activity, MainActivity::class.java)
+                    intent.putExtra("p_img", my_data.toString())
+                    intent.putExtra("u_name", binding.setUsername.text.toString().trim())
+                    startActivity(intent)
+                } else {
+                    try {
+                        val jObjError = JSONObject(it.errorBody()!!.string())
+                        f_msg = jObjError.getString("message")
+                        if (f_msg.contains("username")) {
+                            binding.laySetUsername!!.error = "Username is already taken"
+                        }
+                        if (f_msg.contains("email")) {
+                            binding.laySetEmail!!.error = "E-Mail is already taken"
+                        }
+                    } catch (e: Exception) {
+                        Toast.makeText(context, e.message, Toast.LENGTH_LONG).show()
                     }
-                } catch (e: Exception) {
-                    Toast.makeText(context, e.message, Toast.LENGTH_LONG).show()
                 }
             }
-        }
+        )
         binding.setEmail.doOnTextChanged { text, start, before, count ->
             if (!email_check(text.toString())) {
                 binding.laySetEmail!!.error = "Invalid E-Mail Format"
