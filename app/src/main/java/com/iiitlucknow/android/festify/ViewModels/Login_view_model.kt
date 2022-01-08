@@ -11,7 +11,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class Login_view_model(application: Application):AndroidViewModel(application) {
+class Login_view_model(application: Application) : AndroidViewModel(application) {
 
     var log_Response: MutableLiveData<Response<default_response>> = MutableLiveData()
     fun checkLogin(loginData: login_data) {
