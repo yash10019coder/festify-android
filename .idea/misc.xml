@@ -5,16 +5,16 @@
       <map>
         <entry key="..\:/Development/festify/app/src/main/res/layout-land/fragment_events.xml" value="0.1" />
         <entry key="..\:/Development/festify/app/src/main/res/layout-land/fragment_home.xml" value="0.1" />
-        <entry key="..\:/Development/festify/app/src/main/res/layout-land/fragment_login.xml" value="0.4" />
+        <entry key="..\:/Development/festify/app/src/main/res/layout-land/fragment_login.xml" value="0.2" />
         <entry key="..\:/Development/festify/app/src/main/res/layout-land/fragment_sign_up.xml" value="0.264" />
         <entry key="..\:/Development/festify/app/src/main/res/layout-land/fragment_start.xml" value="0.1" />
-        <entry key="..\:/Development/festify/app/src/main/res/layout-land/fragment_teams.xml" value="0.1" />
-        <entry key="..\:/Development/festify/app/src/main/res/layout/activity_entrance.xml" value="0.1" />
         <entry key="..\:/Development/festify/app/src/main/res/layout/activity_main.xml" value="0.1109375" />
         <entry key="..\:/Development/festify/app/src/main/res/layout/fragment_events.xml" value="0.1109375" />
         <entry key="..\:/Development/festify/app/src/main/res/layout/fragment_login.xml" value="0.1109375" />
         <entry key="..\:/Development/festify/app/src/main/res/layout/fragment_sign_up.xml" value="0.1109375" />
         <entry key="..\:/Development/festify/app/src/main/res/layout/fragment_start.xml" value="0.13020833333333334" />
+        <entry key="app/src/main/res/layout/fragment_login.xml" value="0.2586050724637681" />
+        <entry key="app/src/main/res/layout/fragment_start.xml" value="0.25" />
       </map>
     </option>
   </component>

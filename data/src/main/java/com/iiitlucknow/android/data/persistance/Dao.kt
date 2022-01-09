@@ -9,11 +9,11 @@ import androidx.room.Query
 @Dao
 interface Dao {
     @Insert
-    suspend fun addevent(myEvents: my_events)
+    suspend fun addevent(eventsTable: EventsTable)
 
     @Delete
-    suspend fun deleteevent(myEvents: my_events)
+    suspend fun deleteevent(eventsTable: EventsTable)
 
     @Query("SELECT * FROM words_table ORDER BY id ASC")
-    fun getevents(): LiveData<MutableList<my_events>>
+    fun getevents(): LiveData<MutableList<EventsTable>>
 }

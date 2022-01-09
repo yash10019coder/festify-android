@@ -4,34 +4,36 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
+import com.iiitlucknow.android.data.persistance.EventsTable
+import com.iiitlucknow.android.data.persistance.PersistanceDatabase
 import com.iiitlucknow.android.data.persistance.Repo
-import com.iiitlucknow.android.data.persistance.database
-import com.iiitlucknow.android.data.persistance.my_events
 import dagger.hilt.android.scopes.ViewModelScoped
-import javax.inject.Inject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @ViewModelScoped
-class HomeViewModel @Inject constructor(application: Application) : AndroidViewModel(application) {
+class HomeViewModel @Inject constructor(
+    application: Application,
+    dao: PersistanceDatabase
+) : AndroidViewModel(application) {
     private val myrepo: Repo
-    val allwords: LiveData<MutableList<my_events>>
+    val allwords: LiveData<MutableList<EventsTable>>
 
     init {
-        val dao = database.getDatabase(application).myDao()
         myrepo = Repo(dao)
         allwords = myrepo.getwords
     }
 
-    fun addevent(myEvents: my_events) {
+    fun addevent(eventsTable: EventsTable) {
         viewModelScope.launch(Dispatchers.IO) {
-            myrepo.insertitem(myEvents)
+            myrepo.insertitem(eventsTable)
         }
     }
 
-    fun deleteevent(myEvents: my_events) {
+    fun deleteevent(eventsTable: EventsTable) {
         viewModelScope.launch(Dispatchers.IO) {
-            myrepo.deleteword(myEvents)
+            myrepo.deleteword(eventsTable)
         }
     }
 }

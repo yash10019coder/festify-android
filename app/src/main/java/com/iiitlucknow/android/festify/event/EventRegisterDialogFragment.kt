@@ -8,17 +8,21 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
-import androidx.lifecycle.ViewModelProvider
-import com.iiitlucknow.android.data.persistance.my_events
+import com.iiitlucknow.android.data.persistance.EventsTable
 import com.iiitlucknow.android.festify.databinding.FragmentMydialogBinding
 import com.iiitlucknow.android.festify.home.HomeViewModel
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
-class EventRegisterDialogFragment(myEvents: my_events, flag: Int) : DialogFragment() {
+@AndroidEntryPoint
+class EventRegisterDialogFragment(eventsTable: EventsTable, flag: Int) : DialogFragment() {
     val myflag = flag
-    val new_event: my_events = myEvents
+    val new_event: EventsTable = eventsTable
     private var _binding: FragmentMydialogBinding? = null
     private val binding get() = _binding!!
-    lateinit var vm: HomeViewModel
+
+    @Inject
+    lateinit var homeViewModel: HomeViewModel
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -27,7 +31,6 @@ class EventRegisterDialogFragment(myEvents: my_events, flag: Int) : DialogFragme
         _binding = FragmentMydialogBinding.inflate(
             inflater, container, false
         )
-        vm = ViewModelProvider(this).get(HomeViewModel::class.java)
         if (myflag == 1) {
             binding.headText.text = "CONFIRM YOUR UNREGISTRATION"
         }
@@ -37,14 +40,14 @@ class EventRegisterDialogFragment(myEvents: my_events, flag: Int) : DialogFragme
         }
         binding.confirm.setOnClickListener {
             if (myflag == 0) {
-                vm.addevent(new_event)
+                homeViewModel.addevent(new_event)
                 Toast.makeText(
                     activity,
                     "You have successfully registered for the event",
                     Toast.LENGTH_SHORT
                 ).show()
             } else {
-                vm.deleteevent(new_event)
+                homeViewModel.deleteevent(new_event)
                 Toast.makeText(
                     activity,
                     "You have successfully unregistered for the event",
