@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/eventsFragment"
-        android:name="com.iiitlucknow.android.festify.EventsFragment"
+        android:name="com.iiitlucknow.android.festify.event.EventFragment"
         android:label="EventsFragment">
         <action
             android:id="@+id/action_eventsFragment_to_clickFragment"
@@ -28,7 +28,7 @@
         tools:layout="@layout/fragment_teams" />
     <fragment
         android:id="@+id/clickFragment"
-        android:name="com.iiitlucknow.android.festify.ClickFragment"
+        android:name="com.iiitlucknow.android.festify.event.EventSubcategoryFragment"
         android:label="fragment_click"
         tools:layout="@layout/fragment_click">
         <argument

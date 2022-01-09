@@ -4,9 +4,9 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
-import com.iiitlucknow.android.festify.Repositories.Repo
-import com.iiitlucknow.android.festify.data.database
-import com.iiitlucknow.android.festify.data.my_events
+import com.iiitlucknow.android.data.persistance.Repo
+import com.iiitlucknow.android.data.persistance.database
+import com.iiitlucknow.android.data.persistance.my_events
 import dagger.hilt.android.scopes.ViewModelScoped
 import javax.inject.Inject
 import kotlinx.coroutines.Dispatchers
