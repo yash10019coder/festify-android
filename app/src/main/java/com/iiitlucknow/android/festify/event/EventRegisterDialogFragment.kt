@@ -8,16 +8,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
-import com.iiitlucknow.android.data.persistance.EventsTable
+import com.iiitlucknow.android.data.persistance.EventsEntity
 import com.iiitlucknow.android.festify.databinding.FragmentMydialogBinding
 import com.iiitlucknow.android.festify.home.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class EventRegisterDialogFragment(eventsTable: EventsTable, flag: Int) : DialogFragment() {
+class EventRegisterDialogFragment(eventsEntity: EventsEntity, flag: Int) : DialogFragment() {
     val myflag = flag
-    val new_event: EventsTable = eventsTable
+    val new_event: EventsEntity = eventsEntity
     private var _binding: FragmentMydialogBinding? = null
     private val binding get() = _binding!!
 

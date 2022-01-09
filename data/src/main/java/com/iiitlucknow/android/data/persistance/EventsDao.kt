@@ -7,13 +7,13 @@ import androidx.room.Insert
 import androidx.room.Query
 
 @Dao
-interface Dao {
+interface EventsDao {
     @Insert
-    suspend fun addevent(eventsTable: EventsTable)
+    suspend fun addEvent(eventsEntity: EventsEntity)
 
     @Delete
-    suspend fun deleteevent(eventsTable: EventsTable)
+    suspend fun deleteEvent(eventsEntity: EventsEntity)
 
     @Query("SELECT * FROM words_table ORDER BY id ASC")
-    fun getevents(): LiveData<MutableList<EventsTable>>
+    fun getEvents(): LiveData<MutableList<EventsEntity>>
 }

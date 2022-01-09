@@ -68,6 +68,8 @@ dependencies {
     implementation "androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03"
     kapt "com.google.dagger:hilt-compiler:2.38.1"
     kapt 'com.google.dagger:hilt-android-compiler:2.28-alpha'
+//    annotationProcessor "com.google.dagger:hilt-compiler:2.38.1"
+//    annotationProcessor 'com.google.dagger:hilt-android-compiler:2.28-alpha'
 
 
     implementation project(path: ':model')

@@ -10,13 +10,18 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 
 @Module
 @InstallIn(ActivityComponent::class)
-object PersistanceDatabaseModule {
+object EventsModule {
 
     @Provides
-    fun providePersistanceDatabase(@ApplicationContext applicationContext: Context): PersistanceDatabase {
+    fun provideEventsRepository(dao: EventsDao): EventsRepository {
+        return EventsRepository(dao)
+    }
+
+    @Provides
+    fun provideEventsDatabase(@ApplicationContext context: Context): EventsDatabase {
         return Room.databaseBuilder(
-            applicationContext,
-            PersistanceDatabase::class.java,
+            context,
+            EventsDatabase::class.java,
             "item_database"
         )
             .fallbackToDestructiveMigration()

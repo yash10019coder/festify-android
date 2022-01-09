@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
-import com.iiitlucknow.android.data.persistance.EventsTable
+import com.iiitlucknow.android.data.persistance.EventsEntity
 import com.iiitlucknow.android.festify.R
 import com.iiitlucknow.android.model.EventRecyclerItemClick
 
@@ -38,7 +38,7 @@ class EventSubcategoryAdapter(private var list: MutableList<EventRecyclerItemCli
         holder.date.text = holder.context.resources.getString(item.date)
         holder.recycler_clicker_button.setOnClickListener {
             val mydialog = EventRegisterDialogFragment(
-                EventsTable(0, item.my_img, item.my_title, item.date),
+                EventsEntity(0, item.my_img, item.my_title, item.date),
                 0
             )
             mydialog.show(fm, "view")
