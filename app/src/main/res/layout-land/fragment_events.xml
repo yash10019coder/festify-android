@@ -30,7 +30,6 @@
         app:sliderStartAutoCycle="true" />
 
     <androidx.recyclerview.widget.RecyclerView
-
         android:id="@+id/recycler"
         android:layout_width="0dp"
         android:layout_height="match_parent"
