@@ -8,11 +8,9 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/clickRecycler"
-        android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
+        android:layout_gravity="center"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/recycler_item_clicker_layout" />
-
-
 </FrameLayout>

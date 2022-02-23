@@ -5,14 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Entrance">
+
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/entrance_fragment"
+        android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:name="androidx.navigation.fragment.NavHostFragment"
         app:defaultNavHost="true"
-        app:navGraph ="@navigation/entrance_nav_graph"
-
-        />
-
+        app:navGraph="@navigation/entrance_nav_graph" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/nav_head"
-    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -11,27 +10,24 @@
         android:layout_height="124dp"
         android:layout_marginLeft="21dp"
         android:layout_marginTop="25dp"
-        android:src="@drawable/profile_placeholder"
+        android:src="@drawable/profile_placeholder" />
 
-        />
     <TextView
         android:id="@+id/profile_username"
         android:layout_width="wrap_content"
         android:layout_height="33dp"
-        android:text="USERNAME"
         android:layout_marginLeft="34dp"
         android:layout_marginTop="158dp"
-        android:textSize="20dp"
+        android:text="USERNAME"
         android:textColor="@color/black"
-        />
+        android:textSize="20dp" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="24dp"
-        android:text="@string/sample"
-        android:textColor="#7B7D79"
         android:layout_marginLeft="34dp"
         android:layout_marginTop="191dp"
-        android:textSize="12dp"
-        />
-
+        android:text="@string/sample"
+        android:textColor="#7B7D79"
+        android:textSize="12dp" />
 </RelativeLayout>

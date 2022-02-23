@@ -38,9 +38,7 @@
         android:gravity="center"
         android:text="@string/date"
         android:textColor="@color/black"
-        android:textSize="20dp"
-
-        />
+        android:textSize="20dp" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn"
@@ -49,8 +47,5 @@
         android:layout_marginLeft="235dp"
         android:layout_marginTop="216dp"
         android:background="@drawable/button_background"
-        android:text="@string/register"
-
-        />
-
+        android:text="@string/register" />
 </androidx.cardview.widget.CardView>
