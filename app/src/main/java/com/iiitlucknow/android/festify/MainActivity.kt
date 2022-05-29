@@ -58,6 +58,7 @@ class MainActivity : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
+
     var time = 0L
     override fun onBackPressed() {
         if (time + 2000 > System.currentTimeMillis()) {
