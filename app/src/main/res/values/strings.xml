@@ -12,4 +12,14 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="open">OPEN</string>
     <string name="close">CLOSE</string>
+
+    <string-array name="event_category">
+        <item>App Development</item>
+        <item>Web Development</item>
+        <item>Machine Learning</item>
+        <item>Information Security</item>
+        <item>Competitive Programming</item>
+        <item>Designing</item>
+        <item>Miscellaneous</item>
+    </string-array>
 </resources>

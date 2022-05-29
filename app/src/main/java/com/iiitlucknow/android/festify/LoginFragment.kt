@@ -74,26 +74,28 @@ class LoginFragment : Fragment() {
             findNavController().navigate(R.id.action_loginFragment_to_signUpFragment)
         }
         binding.logBtn!!.setOnClickListener {
-            if (binding.logUser!!.text.toString().trim().isEmpty()) {
-                binding.layLogUser!!.error = "This Field Cannot Be Empty"
-            } else {
-                binding.layLogUser!!.error = null
-            }
-            if (binding.logPassword!!.text.toString().trim().isEmpty()) {
-                binding.layLogPassword!!.error = "Password Cannot Be Empty"
-            } else {
-                binding.layLogPassword!!.error = null
-            }
-            if (binding.logUser!!.text.toString().trim()
-                .isNotEmpty() && binding.logPassword!!.text.toString().trim().isNotEmpty()
-            ) {
-                vm.checkLogin(
-                    login_data(
-                        binding.logUser!!.text.toString().trim(),
-                        binding.logPassword!!.text.toString().trim()
-                    )
-                )
-            }
+            val intent = Intent(activity, MainActivity::class.java)
+            startActivity(intent)
+//            if (binding.logUser!!.text.toString().trim().isEmpty()) {
+//                binding.layLogUser!!.error = "This Field Cannot Be Empty"
+//            } else {
+//                binding.layLogUser!!.error = null
+//            }
+//            if (binding.logPassword!!.text.toString().trim().isEmpty()) {
+//                binding.layLogPassword!!.error = "Password Cannot Be Empty"
+//            } else {
+//                binding.layLogPassword!!.error = null
+//            }
+//            if (binding.logUser!!.text.toString().trim()
+//                .isNotEmpty() && binding.logPassword!!.text.toString().trim().isNotEmpty()
+//            ) {
+//                vm.checkLogin(
+//                    login_data(
+//                        binding.logUser!!.text.toString().trim(),
+//                        binding.logPassword!!.text.toString().trim()
+//                    )
+//                )
+//            }
         }
 
         return binding.root
