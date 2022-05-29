@@ -10,7 +10,7 @@
         android:icon="@drawable/ic_baseline_home_24"
         android:title="Home" />
     <item
-        android:id="@+id/teamsFragment"
+        android:id="@+id/addEventsFragment"
         android:icon="@drawable/ic_baseline_teams_24"
-        android:title="Teams" />
+        android:title="Add Event" />
 </menu>

@@ -47,6 +47,15 @@ class MainActivity : AppCompatActivity() {
                     openURL.data = Uri.parse("https://github.com/yash10019coder/festify-android")
                     startActivity(openURL)
                 }
+                R.id.requestverification -> {
+                    /**
+                     * Using this temporary message to transfer
+                     */
+                    val message = extras?.getString("u_name")
+                    val intent = Intent(this,RequestVerificationActivity::class.java)
+                        .apply { putExtra("u_name",message) }
+                    startActivity(intent)
+                }
             }
             false
         }

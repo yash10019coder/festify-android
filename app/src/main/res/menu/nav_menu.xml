@@ -8,12 +8,15 @@
         <item
             android:id="@+id/mail"
             android:icon="@drawable/ic_email"
-            android:title="Mail us"></item>
+            android:title="Mail us" />
         <item
             android:id="@+id/contribute"
             android:icon="@drawable/ic_github"
-            android:title="Contribute"></item>
-
+            android:title="Contribute" />
+        <item
+            android:id="@+id/requestverification"
+            android:icon="@drawable/ic_baseline_verified_24"
+            android:title="Request Verification" />
     </group>
 
 </menu>

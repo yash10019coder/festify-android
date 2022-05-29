@@ -22,9 +22,9 @@
 
     </fragment>
     <fragment
-        android:id="@+id/teamsFragment"
+        android:id="@+id/addEventsFragment"
         android:name="com.iiitlucknow.android.festify.AddEventFragment"
-        android:label="fragment_teams"
+        android:label="fragment_addevents"
         tools:layout="@layout/fragment_addevents" />
     <fragment
         android:id="@+id/clickFragment"
