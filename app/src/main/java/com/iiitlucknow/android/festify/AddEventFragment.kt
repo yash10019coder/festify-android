@@ -7,13 +7,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import android.widget.EditText
-import android.widget.Spinner
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.fragment.app.Fragment
 import com.google.android.material.textfield.TextInputEditText
 import com.iiitlucknow.android.festify.databinding.FragmentAddeventsBinding
-import java.util.*
+import java.util.Calendar
 
 class AddEventFragment : Fragment() {
     private var _binding: FragmentAddeventsBinding? = null
@@ -26,7 +23,6 @@ class AddEventFragment : Fragment() {
     ): View {
         _binding = FragmentAddeventsBinding.inflate(inflater, container, false)
 
-
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter.createFromResource(
             requireContext(),
@@ -38,7 +34,6 @@ class AddEventFragment : Fragment() {
             // Apply the adapter to the spinner
             binding.eventCategorySpinner.adapter = adapter
         }
-
 
         binding.eventDateEditText.setOnClickListener {
             showDatePicker(it as TextInputEditText)
@@ -98,7 +93,4 @@ class AddEventFragment : Fragment() {
         )
         timePicker.show()
     }
-
 }
-
-

@@ -85,7 +85,7 @@ class LoginFragment : Fragment() {
                 binding.layLogPassword!!.error = null
             }
             if (binding.logUser!!.text.toString().trim()
-                    .isNotEmpty() && binding.logPassword!!.text.toString().trim().isNotEmpty()
+               .isNotEmpty() && binding.logPassword!!.text.toString().trim().isNotEmpty()
             ) {
                 vm.checkLogin(
                     login_data(
