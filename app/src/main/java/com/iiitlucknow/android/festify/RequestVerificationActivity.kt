@@ -1,9 +1,9 @@
 package com.iiitlucknow.android.festify
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.Spinner
+import androidx.appcompat.app.AppCompatActivity
 import com.iiitlucknow.android.festify.databinding.ActivityRequestVerificationBinding
 
 class RequestVerificationActivity : AppCompatActivity() {
@@ -17,13 +17,13 @@ class RequestVerificationActivity : AppCompatActivity() {
         val username = intent.getStringExtra("username")
         binding.verificationUsernameEditText.setText(username)
 
-        initSpinner(binding.verificationWingSpinner,R.array.wing_names)
-        initSpinner(binding.verificationDesignationSpinner,R.array.designations)
+        initSpinner(binding.verificationWingSpinner, R.array.wing_names)
+        initSpinner(binding.verificationDesignationSpinner, R.array.designations)
 
         setContentView(view)
     }
 
-    private fun initSpinner(_spinner: Spinner, _arrayId: Int){
+    private fun initSpinner(_spinner: Spinner, _arrayId: Int) {
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter.createFromResource(
             this,

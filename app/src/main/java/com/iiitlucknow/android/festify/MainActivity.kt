@@ -49,8 +49,8 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.requestverification -> {
                     val message = extras?.getString("username")
-                    val intent = Intent(this,RequestVerificationActivity::class.java)
-                        .apply { putExtra("username",message) }
+                    val intent = Intent(this, RequestVerificationActivity::class.java)
+                        .apply { putExtra("username", message) }
                     startActivity(intent)
                 }
             }

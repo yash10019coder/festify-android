@@ -28,7 +28,7 @@ class AddEventFragment : Fragment() {
     ): View {
         _binding = FragmentAddeventsBinding.inflate(inflater, container, false)
 
-        initSpinner(binding.eventCategorySpinner,R.array.event_category)
+        initSpinner(binding.eventCategorySpinner, R.array.event_category)
 
         binding.eventDateEditText.setOnClickListener {
             showDatePicker(it as TextInputEditText)
@@ -92,7 +92,7 @@ class AddEventFragment : Fragment() {
         timePicker.show()
     }
 
-    private fun initSpinner(_spinner: Spinner, _arrayId: Int){
+    private fun initSpinner(_spinner: Spinner, _arrayId: Int) {
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter.createFromResource(
             requireContext(),
@@ -116,7 +116,7 @@ class AddEventFragment : Fragment() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_CODE){
+        if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_CODE) {
             binding.eventImage.setImageURI(data?.data) // handle chosen image
         }
     }
