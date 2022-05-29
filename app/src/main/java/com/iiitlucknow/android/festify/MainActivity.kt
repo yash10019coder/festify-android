@@ -48,12 +48,9 @@ class MainActivity : AppCompatActivity() {
                     startActivity(openURL)
                 }
                 R.id.requestverification -> {
-                    /**
-                     * Using this temporary message to transfer
-                     */
-                    val message = extras?.getString("u_name")
+                    val message = extras?.getString("username")
                     val intent = Intent(this,RequestVerificationActivity::class.java)
-                        .apply { putExtra("u_name",message) }
+                        .apply { putExtra("username",message) }
                     startActivity(intent)
                 }
             }
