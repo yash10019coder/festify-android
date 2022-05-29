@@ -2,10 +2,8 @@ package com.iiitlucknow.android.festify
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.Layout
 import android.widget.ArrayAdapter
 import android.widget.Spinner
-import android.widget.SpinnerAdapter
 import com.iiitlucknow.android.festify.databinding.ActivityRequestVerificationBinding
 
 class RequestVerificationActivity : AppCompatActivity() {
