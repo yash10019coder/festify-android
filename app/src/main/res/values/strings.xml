@@ -19,7 +19,24 @@
         <item>Machine Learning</item>
         <item>Information Security</item>
         <item>Competitive Programming</item>
+        <item>FOSS</item>
         <item>Designing</item>
         <item>Miscellaneous</item>
+    </string-array>
+
+    <string-array name="wing_names">
+        <item>App Development Wing</item>
+        <item>Web Development Wing</item>
+        <item>Machine Learning Wing</item>
+        <item>Information Security Wing</item>
+        <item>Competitive Programming Wing</item>
+        <item>FOSS Wing</item>
+        <item>Design Wing</item>
+    </string-array>
+
+    <string-array name="designations">
+        <item>Coordinator</item>
+        <item>Senior Member</item>
+        <item>Member</item>
     </string-array>
 </resources>

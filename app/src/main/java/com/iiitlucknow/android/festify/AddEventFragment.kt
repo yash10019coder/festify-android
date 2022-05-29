@@ -1,12 +1,15 @@
 package com.iiitlucknow.android.festify
 
+import android.app.Activity
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.Spinner
 import androidx.fragment.app.Fragment
 import com.google.android.material.textfield.TextInputEditText
 import com.iiitlucknow.android.festify.databinding.FragmentAddeventsBinding
@@ -16,6 +19,8 @@ class AddEventFragment : Fragment() {
     private var _binding: FragmentAddeventsBinding? = null
     private val binding get() = _binding!!
 
+    val REQUEST_CODE = 100
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -23,17 +28,7 @@ class AddEventFragment : Fragment() {
     ): View {
         _binding = FragmentAddeventsBinding.inflate(inflater, container, false)
 
-        // Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter.createFromResource(
-            requireContext(),
-            R.array.event_category,
-            android.R.layout.simple_spinner_item
-        ).also { adapter ->
-            // Specify the layout to use when the list of choices appears
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            // Apply the adapter to the spinner
-            binding.eventCategorySpinner.adapter = adapter
-        }
+        initSpinner(binding.eventCategorySpinner, R.array.event_category)
 
         binding.eventDateEditText.setOnClickListener {
             showDatePicker(it as TextInputEditText)
@@ -48,13 +43,16 @@ class AddEventFragment : Fragment() {
             showTimePicker(it as TextInputEditText)
         }
 
+        binding.eventImage.setOnClickListener {
+            openGalleryForImage()
+        }
+
         binding.submitEventBtn.setOnClickListener {
             /**
              * Get selected item in category spinner like this :
              * binding.eventCategorySpinner.selectedItem.toString()
              */
         }
-
         return binding.root
     }
 
@@ -92,5 +90,34 @@ class AddEventFragment : Fragment() {
             false
         )
         timePicker.show()
+    }
+
+    private fun initSpinner(_spinner: Spinner, _arrayId: Int) {
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter.createFromResource(
+            requireContext(),
+            _arrayId,
+            android.R.layout.simple_spinner_item
+        ).also { adapter ->
+            // Specify the layout to use when the list of choices appears
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            // Apply the adapter to the spinner
+            _spinner.adapter = adapter
+        }
+    }
+
+    // TODO : Deprecated, use a better method for image selection
+
+    private fun openGalleryForImage() {
+        val intent = Intent(Intent.ACTION_PICK)
+        intent.type = "image/*"
+        startActivityForResult(intent, REQUEST_CODE)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_CODE) {
+            binding.eventImage.setImageURI(data?.data) // handle chosen image
+        }
     }
 }

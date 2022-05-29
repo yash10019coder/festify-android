@@ -47,6 +47,12 @@ class MainActivity : AppCompatActivity() {
                     openURL.data = Uri.parse("https://github.com/yash10019coder/festify-android")
                     startActivity(openURL)
                 }
+                R.id.requestverification -> {
+                    val message = extras?.getString("username")
+                    val intent = Intent(this, RequestVerificationActivity::class.java)
+                        .apply { putExtra("username", message) }
+                    startActivity(intent)
+                }
             }
             false
         }
