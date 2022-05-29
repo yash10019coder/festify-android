@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
         val extras = intent.extras
         if (extras != null) {
             profile_img.load(extras.getString("p_img"))
-            profile_username.text = extras.getString("u_name")
+            profile_username.text = extras.getString("username")
         }
         binding.nav.setNavigationItemSelectedListener {
             when (it.itemId) {
