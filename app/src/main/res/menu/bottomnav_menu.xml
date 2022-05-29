@@ -11,6 +11,6 @@
         android:title="Home" />
     <item
         android:id="@+id/addEventsFragment"
-        android:icon="@drawable/ic_baseline_teams_24"
+        android:icon="@drawable/ic_add"
         android:title="Add Event" />
 </menu>

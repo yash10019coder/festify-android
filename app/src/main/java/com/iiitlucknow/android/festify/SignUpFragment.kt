@@ -45,37 +45,36 @@ class SignUpFragment : Fragment() {
         viewModel = ViewModelProvider.AndroidViewModelFactory(requireActivity().application)
             .create(Signup_view_model::class.java)
         viewModel.sign_Response.observe(
-            viewLifecycleOwner,
-            {
+            viewLifecycleOwner
+        ) {
 
-                if (it.isSuccessful) {
-                    try {
-                        val jsonObject = JSONObject(Gson().toJson(it.body()))
-                        s_msg = jsonObject.getString("message")
-                    } catch (e: JSONException) {
-                        e.printStackTrace()
+            if (it.isSuccessful) {
+                try {
+                    val jsonObject = JSONObject(Gson().toJson(it.body()))
+                    s_msg = jsonObject.getString("message")
+                } catch (e: JSONException) {
+                    e.printStackTrace()
+                }
+                Toast.makeText(context, s_msg, Toast.LENGTH_LONG).show()
+                val intent = Intent(activity, MainActivity::class.java)
+                intent.putExtra("p_img", my_data.toString())
+                intent.putExtra("username", binding.setUsername.text.toString().trim())
+                startActivity(intent)
+            } else {
+                try {
+                    val jObjError = JSONObject(it.errorBody()!!.string())
+                    f_msg = jObjError.getString("message")
+                    if (f_msg.contains("username")) {
+                        binding.laySetUsername!!.error = "Username is already taken"
                     }
-                    Toast.makeText(context, s_msg, Toast.LENGTH_LONG).show()
-                    val intent = Intent(activity, MainActivity::class.java)
-                    intent.putExtra("p_img", my_data.toString())
-                    intent.putExtra("u_name", binding.setUsername.text.toString().trim())
-                    startActivity(intent)
-                } else {
-                    try {
-                        val jObjError = JSONObject(it.errorBody()!!.string())
-                        f_msg = jObjError.getString("message")
-                        if (f_msg.contains("username")) {
-                            binding.laySetUsername!!.error = "Username is already taken"
-                        }
-                        if (f_msg.contains("email")) {
-                            binding.laySetEmail!!.error = "E-Mail is already taken"
-                        }
-                    } catch (e: Exception) {
-                        Toast.makeText(context, e.message, Toast.LENGTH_LONG).show()
+                    if (f_msg.contains("email")) {
+                        binding.laySetEmail!!.error = "E-Mail is already taken"
                     }
+                } catch (e: Exception) {
+                    Toast.makeText(context, e.message, Toast.LENGTH_LONG).show()
                 }
             }
-        )
+        }
         binding.setEmail.doOnTextChanged { text, start, before, count ->
             if (!email_check(text.toString())) {
                 binding.laySetEmail!!.error = "Invalid E-Mail Format"

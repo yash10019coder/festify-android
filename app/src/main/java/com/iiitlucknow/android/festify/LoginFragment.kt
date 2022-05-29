@@ -33,32 +33,32 @@ class LoginFragment : Fragment() {
         vm = ViewModelProvider.AndroidViewModelFactory(requireActivity().application)
             .create(Login_view_model::class.java)
         vm.log_Response.observe(
-            viewLifecycleOwner,
-            {
-                if (it.isSuccessful) {
-                    try {
-                        val jsonObject = JSONObject(Gson().toJson(it.body()))
-                        log_msg = jsonObject.getString("message")
-                    } catch (e: JSONException) {
-                        e.printStackTrace()
+            viewLifecycleOwner
+        ) {
+            if (it.isSuccessful) {
+                try {
+                    val jsonObject = JSONObject(Gson().toJson(it.body()))
+                    log_msg = jsonObject.getString("message")
+                } catch (e: JSONException) {
+                    e.printStackTrace()
+                }
+                Toast.makeText(context, log_msg, Toast.LENGTH_LONG).show()
+                val intent = Intent(activity, MainActivity::class.java)
+                intent.putExtra("username",binding.logUser.text.toString().trim())
+                startActivity(intent)
+            } else {
+                try {
+                    val jObjError = JSONObject(it.errorBody()!!.string())
+                    log_er_msg = jObjError.getString("message")
+                    if (log_er_msg.contains("not")) {
+                        binding.layLogUser!!.error = "Invalid Credentials"
+                        binding.layLogPassword!!.error = "Invalid Credentials"
                     }
-                    Toast.makeText(context, log_msg, Toast.LENGTH_LONG).show()
-                    val intent = Intent(activity, MainActivity::class.java)
-                    startActivity(intent)
-                } else {
-                    try {
-                        val jObjError = JSONObject(it.errorBody()!!.string())
-                        log_er_msg = jObjError.getString("message")
-                        if (log_er_msg.contains("not")) {
-                            binding.layLogUser!!.error = "Invalid Credentials"
-                            binding.layLogPassword!!.error = "Invalid Credentials"
-                        }
-                    } catch (e: Exception) {
-                        Toast.makeText(context, e.message, Toast.LENGTH_LONG).show()
-                    }
+                } catch (e: Exception) {
+                    Toast.makeText(context, e.message, Toast.LENGTH_LONG).show()
                 }
             }
-        )
+        }
         binding.logUser!!.doOnTextChanged { text, start, before, count ->
             if (text.toString().isNotEmpty()) {
                 binding.layLogUser!!.error = null
