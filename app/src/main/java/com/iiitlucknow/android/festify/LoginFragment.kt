@@ -51,46 +51,46 @@ class LoginFragment : Fragment() {
                     val jObjError = JSONObject(it.errorBody()!!.string())
                     log_er_msg = jObjError.getString("message")
                     if (log_er_msg.contains("not")) {
-                        binding.layLogUser!!.error = "Invalid Credentials"
-                        binding.layLogPassword!!.error = "Invalid Credentials"
+                        binding.layLogUser.error = "Invalid Credentials"
+                        binding.layLogPassword.error = "Invalid Credentials"
                     }
                 } catch (e: Exception) {
                     Toast.makeText(context, e.message, Toast.LENGTH_LONG).show()
                 }
             }
         }
-        binding.logUser!!.doOnTextChanged { text, start, before, count ->
+        binding.logUser.doOnTextChanged { text, start, before, count ->
             if (text.toString().isNotEmpty()) {
-                binding.layLogUser!!.error = null
+                binding.layLogUser.error = null
             }
         }
-        binding.logPassword!!.doOnTextChanged { text, start, before, count ->
+        binding.logPassword.doOnTextChanged { text, start, before, count ->
             if (text.toString().isNotEmpty()) {
-                binding.layLogPassword!!.error = null
+                binding.layLogPassword.error = null
             }
         }
 
         binding.changeToSignup.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_signUpFragment)
         }
-        binding.logBtn!!.setOnClickListener {
-            if (binding.logUser!!.text.toString().trim().isEmpty()) {
-                binding.layLogUser!!.error = "This Field Cannot Be Empty"
+        binding.logBtn.setOnClickListener {
+            if (binding.logUser.text.toString().trim().isEmpty()) {
+                binding.layLogUser.error = "This Field Cannot Be Empty"
             } else {
-                binding.layLogUser!!.error = null
+                binding.layLogUser.error = null
             }
-            if (binding.logPassword!!.text.toString().trim().isEmpty()) {
-                binding.layLogPassword!!.error = "Password Cannot Be Empty"
+            if (binding.logPassword.text.toString().trim().isEmpty()) {
+                binding.layLogPassword.error = "Password Cannot Be Empty"
             } else {
-                binding.layLogPassword!!.error = null
+                binding.layLogPassword.error = null
             }
-            if (binding.logUser!!.text.toString().trim()
-                .isNotEmpty() && binding.logPassword!!.text.toString().trim().isNotEmpty()
+            if (binding.logUser.text.toString().trim()
+                .isNotEmpty() && binding.logPassword.text.toString().trim().isNotEmpty()
             ) {
                 vm.checkLogin(
                     login_data(
-                        binding.logUser!!.text.toString().trim(),
-                        binding.logPassword!!.text.toString().trim()
+                        binding.logUser.text.toString().trim(),
+                        binding.logPassword.text.toString().trim()
                     )
                 )
             }

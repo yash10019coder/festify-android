@@ -10,15 +10,27 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Spinner
+import android.widget.Toast
+import androidx.core.app.ActivityCompat.startActivityForResult
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.textfield.TextInputEditText
+import com.google.gson.Gson
+import com.iiitlucknow.android.festify.ViewModels.AddEventFragmentViewModel
+import com.iiitlucknow.android.festify.ViewModels.Login_view_model
+import com.iiitlucknow.android.festify.data_classes.add_event_data
 import com.iiitlucknow.android.festify.databinding.FragmentAddeventsBinding
+import org.json.JSONException
+import org.json.JSONObject
 import java.util.Calendar
 
 class AddEventFragment : Fragment() {
     private var _binding: FragmentAddeventsBinding? = null
     private val binding get() = _binding!!
-
+    lateinit var vm: AddEventFragmentViewModel
+    lateinit var add_msg: String
+    lateinit var add_err_msg: String
     val REQUEST_CODE = 100
 
     override fun onCreateView(
@@ -27,6 +39,30 @@ class AddEventFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentAddeventsBinding.inflate(inflater, container, false)
+        vm = ViewModelProvider.AndroidViewModelFactory(requireActivity().application)
+            .create(AddEventFragmentViewModel::class.java)
+
+        vm.add_Response.observe(
+            viewLifecycleOwner
+        ) {
+            if (it.isSuccessful) {
+                try {
+                    val jsonObject = JSONObject(Gson().toJson(it.body()))
+                    add_msg = jsonObject.getString("message")
+                } catch (e: JSONException) {
+                    e.printStackTrace()
+                }
+                Toast.makeText(context, add_msg, Toast.LENGTH_LONG).show()
+            } else {
+                try {
+                    val jObjError = JSONObject(it.errorBody()!!.string())
+                    add_err_msg = jObjError.getString("message")
+                    Toast.makeText(context, add_err_msg, Toast.LENGTH_LONG).show()
+                } catch (e: Exception) {
+                    Toast.makeText(context, e.message, Toast.LENGTH_LONG).show()
+                }
+            }
+        }
 
         initSpinner(binding.eventCategorySpinner, R.array.event_category)
 
@@ -52,6 +88,17 @@ class AddEventFragment : Fragment() {
              * Get selected item in category spinner like this :
              * binding.eventCategorySpinner.selectedItem.toString()
              */
+            vm.checkAddEvent(add_event_data(
+                binding.eventNameEditText.text.toString().trim(),
+                binding.eventCategorySpinner.selectedItem.toString(),
+                binding.eventDateEditText.text.toString().trim(),
+                binding.eventEndDateEditText.text.toString().trim(),
+                binding.eventTimeEditText.text.toString().trim(),
+                binding.eventEndTimeEditText.text.toString().trim(),
+                binding.eventDescriptionEditText.text.toString().trim(),
+                "Nothing!!!"
+            ))
+
         }
         return binding.root
     }

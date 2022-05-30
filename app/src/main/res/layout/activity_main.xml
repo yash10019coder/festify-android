@@ -17,7 +17,7 @@
             android:layout_weight="1"
             android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             app:defaultNavHost="true"
             app:navGraph="@navigation/my_nav_graph" />
 
