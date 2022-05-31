@@ -9,9 +9,13 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import coil.load
+import com.iiitlucknow.android.festify.ViewModels.MainViewModel
+import com.iiitlucknow.android.festify.data_classes.add_event_data
+import com.iiitlucknow.android.festify.data_classes.event_data
 import com.iiitlucknow.android.festify.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 import de.hdodenhof.circleimageview.CircleImageView
