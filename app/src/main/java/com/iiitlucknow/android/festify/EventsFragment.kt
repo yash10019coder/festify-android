@@ -4,9 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.iiitlucknow.android.festify.Adapters.recyclerAdapter
 import com.iiitlucknow.android.festify.Adapters.sliderAdapter
+import com.iiitlucknow.android.festify.ViewModels.MainViewModel
+import com.iiitlucknow.android.festify.data_classes.add_event_data
 import com.iiitlucknow.android.festify.data_classes.recyclerItem
 import com.iiitlucknow.android.festify.databinding.FragmentEventsBinding
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType
@@ -16,6 +20,7 @@ class EventsFragment : Fragment() {
     private var _binding: FragmentEventsBinding? = null
     private val binding get() = _binding!!
     private lateinit var sliderAdapter: sliderAdapter
+    lateinit var vm:MainViewModel
     private var images: MutableList<Int> = mutableListOf(
         R.drawable.android_img,
         R.drawable.web_development_img,
@@ -39,6 +44,14 @@ class EventsFragment : Fragment() {
         _binding = FragmentEventsBinding.inflate(
             inflater, container, false
         )
+        vm = ViewModelProvider.AndroidViewModelFactory(activity!!.application).create(MainViewModel::class.java)
+
+        vm.myname.observe(viewLifecycleOwner) {
+            Toast.makeText(requireContext(),it.message[0].toString(), Toast.LENGTH_LONG).show()
+           //change message[0] to diff values like message[1],message[2].. to get the values of other events
+            // put the above data in a mutable list and segregate.
+        }
+
         sliderAdapter = sliderAdapter(images)
         binding.apply {
             slide.setSliderAdapter(sliderAdapter)

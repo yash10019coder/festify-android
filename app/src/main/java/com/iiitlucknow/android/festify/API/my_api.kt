@@ -1,9 +1,11 @@
 package com.iiitlucknow.android.festify.API
 
 import com.iiitlucknow.android.festify.data_classes.default_response
+import com.iiitlucknow.android.festify.data_classes.event_data
 import retrofit2.Call
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
+import retrofit2.http.GET
 import retrofit2.http.POST
 
 interface my_api {
@@ -35,4 +37,7 @@ interface my_api {
         @Field("usernameOrEmail") userName: String,
         @Field("password") userPassword: String,
     ): Call<default_response>
+
+    @GET("event/all")
+    suspend fun getEventData(): event_data
 }
