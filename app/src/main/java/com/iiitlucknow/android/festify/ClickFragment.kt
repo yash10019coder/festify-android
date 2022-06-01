@@ -5,8 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import com.iiitlucknow.android.festify.Adapters.clickAdapter
+import com.iiitlucknow.android.festify.ViewModels.MainViewModel
+import com.iiitlucknow.android.festify.data_classes.add_event_data
 import com.iiitlucknow.android.festify.data_classes.recyclerItemClick
 import com.iiitlucknow.android.festify.databinding.FragmentClickBinding
 
@@ -15,41 +18,8 @@ class ClickFragment : Fragment() {
     private val binding get() = _binding!!
     val args: ClickFragmentArgs by navArgs()
     lateinit var adapter: clickAdapter
-    private var m_android: MutableList<recyclerItemClick> = mutableListOf(
-        recyclerItemClick(R.drawable.android_img, R.string.android, R.string.date),
-        recyclerItemClick(R.drawable.android_img, R.string.android, R.string.date),
-        recyclerItemClick(R.drawable.android_img, R.string.android, R.string.date),
-        recyclerItemClick(R.drawable.android_img, R.string.android, R.string.date),
-        recyclerItemClick(R.drawable.android_img, R.string.android, R.string.date)
-    )
-    private var m_web: MutableList<recyclerItemClick> = mutableListOf(
-        recyclerItemClick(R.drawable.web_development_img, R.string.web, R.string.date),
-        recyclerItemClick(R.drawable.web_development_img, R.string.web, R.string.date),
-        recyclerItemClick(R.drawable.web_development_img, R.string.web, R.string.date),
-        recyclerItemClick(R.drawable.web_development_img, R.string.web, R.string.date),
-        recyclerItemClick(R.drawable.web_development_img, R.string.web, R.string.date)
-    )
-    private var m_cyber: MutableList<recyclerItemClick> = mutableListOf(
-        recyclerItemClick(R.drawable.cybersecurity_img, R.string.cyber_sec, R.string.date),
-        recyclerItemClick(R.drawable.cybersecurity_img, R.string.cyber_sec, R.string.date),
-        recyclerItemClick(R.drawable.cybersecurity_img, R.string.cyber_sec, R.string.date),
-        recyclerItemClick(R.drawable.cybersecurity_img, R.string.cyber_sec, R.string.date),
-        recyclerItemClick(R.drawable.cybersecurity_img, R.string.cyber_sec, R.string.date)
-    )
-    private var m_ai: MutableList<recyclerItemClick> = mutableListOf(
-        recyclerItemClick(R.drawable.ai_img, R.string.ai, R.string.date),
-        recyclerItemClick(R.drawable.ai_img, R.string.ai, R.string.date),
-        recyclerItemClick(R.drawable.ai_img, R.string.ai, R.string.date),
-        recyclerItemClick(R.drawable.ai_img, R.string.ai, R.string.date),
-        recyclerItemClick(R.drawable.ai_img, R.string.ai, R.string.date)
-    )
-    private var m_design: MutableList<recyclerItemClick> = mutableListOf(
-        recyclerItemClick(R.drawable.designing_img, R.string.design, R.string.date),
-        recyclerItemClick(R.drawable.designing_img, R.string.design, R.string.date),
-        recyclerItemClick(R.drawable.designing_img, R.string.design, R.string.date),
-        recyclerItemClick(R.drawable.designing_img, R.string.design, R.string.date),
-        recyclerItemClick(R.drawable.designing_img, R.string.design, R.string.date)
-    )
+    lateinit var viewModel: MainViewModel
+    var listOfEvents = mutableListOf<recyclerItemClick>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -59,19 +29,49 @@ class ClickFragment : Fragment() {
         _binding = FragmentClickBinding.inflate(
             inflater, container, false
         )
-        if (args.event == resources.getString(R.string.android)) {
-            adapter = clickAdapter(m_android)
-        } else if (args.event == resources.getString(R.string.web)) {
-            adapter = clickAdapter(m_web)
-        } else if (args.event == resources.getString(R.string.design)) {
-            adapter = clickAdapter(m_design)
-        } else if (args.event == resources.getString(R.string.ai)) {
-            adapter = clickAdapter(m_ai)
-        } else if (args.event == resources.getString(R.string.cyber_sec)) {
-            adapter = clickAdapter(m_cyber)
+
+        viewModel = ViewModelProvider.AndroidViewModelFactory(requireActivity().application)
+            .create(MainViewModel::class.java)
+
+        viewModel.myname.observe(viewLifecycleOwner) {
+            populateEventsList(it.message, args.event)
+            binding.clickRecycler.adapter = clickAdapter(listOfEvents)
+            binding.clickRecycler.setHasFixedSize(true)
         }
-        binding.clickRecycler.adapter = adapter
-        binding.clickRecycler.setHasFixedSize(true)
         return binding.root
     }
+
+    private fun populateEventsList(items: MutableList<add_event_data>, category: String) {
+        listOfEvents.clear()
+        for (ele in items) {
+            if (ele.eventCategory == category) {
+                val dateTime = dateTimeFormat(
+                    ele.eventDate,
+                    ele.eventStartTime,
+                    ele.eventEndDate,
+                    ele.eventEndTime
+                )
+                val recycleritemclick = recyclerItemClick(
+                    R.drawable.android_img,
+                    ele.eventName,
+                    dateTime,
+                    ele.eventDescription,
+                    ele.eventCategory
+                )
+                listOfEvents.add(recycleritemclick)
+            }
+        }
+    }
+
+    private fun dateTimeFormat(
+        startDate: String,
+        startTime: String,
+        endDate: String,
+        endTime: String
+    ): String {
+        val dateTime = StringBuilder(startDate).append(" ").append(startTime).append(" - ")
+            .append(endDate).append(" ").append(endTime)
+        return dateTime.toString()
+    }
+
 }
