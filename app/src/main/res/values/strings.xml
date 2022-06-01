@@ -1,11 +1,15 @@
 <resources>
     <string name="app_name">festify</string>
     <string name="sample">IIIT LUCKNOW</string>
-    <string name="android">ANDROID</string>
-    <string name="web">WEB DEVELOPMENT</string>
-    <string name="ai">AI-ML</string>
-    <string name="design">DESIGNING</string>
-    <string name="cyber_sec">CYBER SECURITY</string>
+    <string name="appdev">App Development</string>
+    <string name="webdev">Web Development</string>
+    <string name="ml">Machine Learning</string>
+    <string name="designing">Designing</string>
+    <string name="info_sec">Information Security</string>
+    <string name="cp">Competitive Programming</string>
+    <string name="foss">FOSS</string>
+    <string name="misc">Miscellaneous</string>
+
     <string name="date">20-12-2021</string>
     <string name="register">REGISTER</string>
     <!-- TODO: Remove or change this placeholder text -->

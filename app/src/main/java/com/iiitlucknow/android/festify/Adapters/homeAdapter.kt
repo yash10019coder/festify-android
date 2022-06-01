@@ -18,10 +18,10 @@ class homeAdapter(
     private val list: MutableList<my_events>
 ) : RecyclerView.Adapter<homeAdapter.ViewHolder>() {
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val recycler_clicker_text: TextView = view.findViewById(R.id.recycler_clicker_text)
-        val recycler_clicker_img: ImageView = view.findViewById(R.id.my_img)
+        val recycler_clicker_text: TextView = view.findViewById(R.id.recycler_clicker_title)
+        val recycler_clicker_img: ImageView = view.findViewById(R.id.recycler_clicker_image)
         val recycler_clicker_button: AppCompatButton = view.findViewById(R.id.btn)
-        val date: TextView = view.findViewById(R.id.date)
+        val date: TextView = view.findViewById(R.id.recycler_clicker_date)
         val context = view.context
     }
 
