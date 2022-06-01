@@ -4,26 +4,28 @@ import android.app.Activity
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Toast
-import androidx.core.app.ActivityCompat.startActivityForResult
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.cloudinary.android.MediaManager
+import com.cloudinary.android.callback.ErrorInfo
+import com.cloudinary.android.callback.UploadCallback
 import com.google.android.material.textfield.TextInputEditText
 import com.google.gson.Gson
 import com.iiitlucknow.android.festify.ViewModels.AddEventFragmentViewModel
-import com.iiitlucknow.android.festify.ViewModels.Login_view_model
 import com.iiitlucknow.android.festify.data_classes.add_event_data
 import com.iiitlucknow.android.festify.databinding.FragmentAddeventsBinding
 import org.json.JSONException
 import org.json.JSONObject
-import java.util.Calendar
+import java.util.*
 
 class AddEventFragment : Fragment() {
     private var _binding: FragmentAddeventsBinding? = null
@@ -32,6 +34,8 @@ class AddEventFragment : Fragment() {
     lateinit var add_msg: String
     lateinit var add_err_msg: String
     val REQUEST_CODE = 100
+    lateinit var path: Uri
+    lateinit var url:String
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -41,7 +45,7 @@ class AddEventFragment : Fragment() {
         _binding = FragmentAddeventsBinding.inflate(inflater, container, false)
         vm = ViewModelProvider.AndroidViewModelFactory(requireActivity().application)
             .create(AddEventFragmentViewModel::class.java)
-
+        config()
         vm.add_Response.observe(
             viewLifecycleOwner
         ) {
@@ -96,11 +100,18 @@ class AddEventFragment : Fragment() {
                 binding.eventTimeEditText.text.toString().trim(),
                 binding.eventEndTimeEditText.text.toString().trim(),
                 binding.eventDescriptionEditText.text.toString().trim(),
-                "Nothing!!!"
+                url
             ))
 
         }
         return binding.root
+    }
+    private fun config() {
+        val appConfig: HashMap<String, String> = HashMap<String, String> ()
+        appConfig["cloud_name"] = "dezs1agpn"
+        appConfig["api_key"]="657298376448555"
+        appConfig["api_secret"] = "MAmfrZubbbdkCQoNiLFB6vGNtCo"
+        MediaManager.init(requireContext(), appConfig)
     }
 
     private fun showDatePicker(edittext: TextInputEditText) {
@@ -155,7 +166,7 @@ class AddEventFragment : Fragment() {
 
     // TODO : Deprecated, use a better method for image selection
 
-    private fun openGalleryForImage() {
+     private fun openGalleryForImage() {
         val intent = Intent(Intent.ACTION_PICK)
         intent.type = "image/*"
         startActivityForResult(intent, REQUEST_CODE)
@@ -165,6 +176,33 @@ class AddEventFragment : Fragment() {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_CODE) {
             binding.eventImage.setImageURI(data?.data) // handle chosen image
+            path =data?.data!!
+            uploadToCloudinary(path)
+
         }
+    }
+     private fun uploadToCloudinary(filePath: Uri) {
+        Log.d("A", "sign up uploadToCloudinary- ")
+        MediaManager.get().upload(filePath).callback(object : UploadCallback {
+            override fun onStart(requestId: String) {
+                //url="Start"
+            }
+
+            override fun onProgress(requestId: String, bytes: Long, totalBytes: Long) {
+               //url="Uploading"
+            }
+
+            override fun onSuccess(requestId: String, resultData: Map<*, *>) {
+                url= resultData["url"].toString()
+            }
+
+            override fun onError(requestId: String?, error: ErrorInfo) {
+              // url=("error " + error.description)
+            }
+
+            override fun onReschedule(requestId: String?, error: ErrorInfo) {
+               // url=("Reschedule " + error.description)
+            }
+        }).dispatch()
     }
 }
