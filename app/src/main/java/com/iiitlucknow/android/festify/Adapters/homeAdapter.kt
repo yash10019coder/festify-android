@@ -18,10 +18,12 @@ class homeAdapter(
     private val list: MutableList<my_events>
 ) : RecyclerView.Adapter<homeAdapter.ViewHolder>() {
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val recycler_clicker_text: TextView = view.findViewById(R.id.recycler_clicker_title)
-        val recycler_clicker_img: ImageView = view.findViewById(R.id.recycler_clicker_image)
+        val recycler_clicker_title: TextView = view.findViewById(R.id.recycler_clicker_title)
+        val recycler_clicker_image: ImageView = view.findViewById(R.id.recycler_clicker_image)
         val recycler_clicker_button: AppCompatButton = view.findViewById(R.id.btn)
         val date: TextView = view.findViewById(R.id.recycler_clicker_date)
+        val recycler_clicker_desc: TextView = view.findViewById(R.id.recycler_clicker_desc)
+        val recycler_clicker_category: TextView = view.findViewById(R.id.recycler_clicker_category)
         val context = view.context
     }
 
@@ -34,16 +36,15 @@ class homeAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val fm: FragmentManager = (holder.context as AppCompatActivity).supportFragmentManager
         val item = list[position]
-        holder.recycler_clicker_text.text =
-            holder.context.resources.getString(item.my_title)
-        holder.recycler_clicker_img.setImageResource(item.my_img)
-        holder.date.text = holder.context.resources.getString(item.date)
+        holder.recycler_clicker_title.text =item.my_title
+        holder.recycler_clicker_image.setImageResource(item.my_img)
+        holder.date.text =item.date
         holder.recycler_clicker_button.text = "UNREGISTER"
         holder.recycler_clicker_button.background =
             ContextCompat.getDrawable(holder.context, R.drawable.unregister_background)
         holder.recycler_clicker_button.setOnClickListener {
             val mydialog =
-                MyDialogFragment(my_events(item.id, item.my_img, item.my_title, item.date), 1)
+                MyDialogFragment(my_events(item.id, item.my_img, item.my_title, item.date,item.desc,item.category), 1)
             mydialog.show(fm, "my_view")
         }
     }

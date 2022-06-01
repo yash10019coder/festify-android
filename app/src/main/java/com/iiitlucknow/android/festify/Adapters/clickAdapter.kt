@@ -42,9 +42,9 @@ class clickAdapter(private var list: MutableList<recyclerItemClick>) :
         holder.date.text = item.date
         holder.recycler_clicker_desc.text = item.desc
         holder.recycler_clicker_category.text = item.category
-//        holder.recycler_clicker_button.setOnClickListener {
-//            val mydialog = MyDialogFragment(my_events(0, item.my_img, item.my_title, item.date), 0)
-//            mydialog.show(fm, "view")
+        holder.recycler_clicker_button.setOnClickListener {
+            val mydialog = MyDialogFragment(my_events(0, item.my_img, item.my_title, item.date,item.desc,item.category), 0)
+            mydialog.show(fm, "view")
 
 
 //            Toast.makeText(
@@ -56,7 +56,7 @@ class clickAdapter(private var list: MutableList<recyclerItemClick>) :
 
 
 
-//        }
+        }
     }
 
     override fun getItemCount(): Int {
