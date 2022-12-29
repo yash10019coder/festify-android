@@ -11,9 +11,9 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class RegisterViewModel(application: Application):AndroidViewModel(application) {
-    var regResponse: MutableLiveData<Response<DefaultResponse>> = MutableLiveData()
-    fun pushPost(post: sendEvent) {
+class DeleteViewModel(application: Application):AndroidViewModel(application) {
+    var delResponse: MutableLiveData<Response<DefaultResponse>> = MutableLiveData()
+    fun delPost(post: sendEvent) {
         retrofitInstance.api.eventRegister(
             post.userName,
             post.eventId
@@ -22,7 +22,7 @@ class RegisterViewModel(application: Application):AndroidViewModel(application) 
                 call: Call<DefaultResponse>,
                 response: Response<DefaultResponse>
             ) {
-                regResponse.value = response
+                delResponse.value = response
             }
 
             override fun onFailure(call: Call<DefaultResponse>, t: Throwable) {

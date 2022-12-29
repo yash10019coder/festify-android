@@ -43,6 +43,8 @@ class homeAdapter(
         holder.recycler_clicker_button.background =
             ContextCompat.getDrawable(holder.context, R.drawable.unregister_background)
         holder.recycler_clicker_button.setOnClickListener {
+            val mydialog = MyDialogFragment(item._id, 0)
+            mydialog.show(fm, "view")
         }
     }
 

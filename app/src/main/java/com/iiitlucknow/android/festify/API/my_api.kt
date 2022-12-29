@@ -56,6 +56,13 @@ interface my_api {
         @Field("eventName") eventName: String
     ): Call<DefaultResponse>
 
+    @FormUrlEncoded
+    @POST("user/delete")
+    fun eventDelete(
+        @Field("userName") userName: String,
+        @Field("eventName") eventId: String
+    ): Call<DefaultResponse>
+
     @GET("user/ro")
     suspend fun getUserData(): UserData
 

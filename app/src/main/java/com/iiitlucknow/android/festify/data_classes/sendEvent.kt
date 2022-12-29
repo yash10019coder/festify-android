@@ -1,6 +1,6 @@
 package com.iiitlucknow.android.festify.data_classes
 
-data class regEvent (
+data class sendEvent(
     val userName:String,
-    val userEvent:String
-    )
+    val eventId:String
+)

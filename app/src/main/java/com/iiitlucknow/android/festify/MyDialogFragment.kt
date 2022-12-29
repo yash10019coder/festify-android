@@ -9,16 +9,18 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
-import com.iiitlucknow.android.festify.data_classes.regEvent
+import com.iiitlucknow.android.festify.data_classes.sendEvent
 import com.iiitlucknow.android.festify.databinding.FragmentMydialogBinding
 import com.iiitlucknow.android.festify.viewModels.RegisterViewModel
 import com.iiitlucknow.android.festify.viewModels.UserViewModel
+import com.iiitlucknow.android.festify.viewModels.DeleteViewModel
 
 class MyDialogFragment(id:String, flag: Int) : DialogFragment() {
     val myflag = flag
     val _id: String = id
     lateinit var registerViewModel: RegisterViewModel
     lateinit var userviewModel: UserViewModel
+    lateinit var deleteViewModel: DeleteViewModel
     private var _binding: FragmentMydialogBinding? = null
     private val binding get() = _binding!!
     override fun onCreateView(
@@ -33,6 +35,8 @@ class MyDialogFragment(id:String, flag: Int) : DialogFragment() {
             .create(RegisterViewModel::class.java)
          userviewModel=ViewModelProvider.AndroidViewModelFactory(requireActivity().application)
             .create(UserViewModel::class.java)
+        deleteViewModel=ViewModelProvider.AndroidViewModelFactory(requireActivity().application)
+            .create(DeleteViewModel::class.java)
         if (myflag == 1) {
             binding.headText.text = "CONFIRM YOUR UNREGISTRATION"
         }
@@ -43,7 +47,7 @@ class MyDialogFragment(id:String, flag: Int) : DialogFragment() {
         binding.confirm.setOnClickListener {
             if (myflag == 0) {
                 userviewModel.myUserData.observe(viewLifecycleOwner){
-                    registerViewModel.pushPost(regEvent(it.message.userName,_id))
+                    registerViewModel.pushPost(sendEvent(it.message.userName,_id))
                 }
 
                 registerViewModel.regResponse.observe(viewLifecycleOwner){
@@ -55,11 +59,24 @@ class MyDialogFragment(id:String, flag: Int) : DialogFragment() {
                     }
                 }
             } else {
-                Toast.makeText(
-                    activity,
-                    "You have successfully unregistered for the event",
-                    Toast.LENGTH_SHORT
-                ).show()
+                userviewModel.myUserData.observe(viewLifecycleOwner){
+                    deleteViewModel.delPost(sendEvent(it.message.userName,_id))
+                }
+
+                deleteViewModel.delResponse.observe(viewLifecycleOwner){
+                    if(it.isSuccessful){
+                        Toast.makeText(requireContext(),it.message(),Toast.LENGTH_LONG).show()
+                    }
+                    else{
+                        Toast.makeText(requireContext(),it.errorBody().toString(),Toast.LENGTH_LONG).show()
+                    }
+                }
+
+//                Toast.makeText(
+//                    activity,
+//                    "You have successfully unregistered for the event",
+//                    Toast.LENGTH_SHORT
+//                ).show()
             }
             dismiss()
         }
