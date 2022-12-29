@@ -9,16 +9,18 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
-import com.iiitlucknow.android.festify.data.my_events
+import com.iiitlucknow.android.festify.data_classes.regEvent
 import com.iiitlucknow.android.festify.databinding.FragmentMydialogBinding
-import com.iiitlucknow.android.festify.home.HomeViewModel
+import com.iiitlucknow.android.festify.viewModels.RegisterViewModel
+import com.iiitlucknow.android.festify.viewModels.UserViewModel
 
-class MyDialogFragment(myEvents: my_events, flag: Int) : DialogFragment() {
+class MyDialogFragment(id:String, flag: Int) : DialogFragment() {
     val myflag = flag
-    val new_event: my_events = myEvents
+    val _id: String = id
+    lateinit var registerViewModel: RegisterViewModel
+    lateinit var userviewModel: UserViewModel
     private var _binding: FragmentMydialogBinding? = null
     private val binding get() = _binding!!
-    lateinit var vm: HomeViewModel
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -27,7 +29,10 @@ class MyDialogFragment(myEvents: my_events, flag: Int) : DialogFragment() {
         _binding = FragmentMydialogBinding.inflate(
             inflater, container, false
         )
-        vm = ViewModelProvider(this).get(HomeViewModel::class.java)
+        registerViewModel=ViewModelProvider.AndroidViewModelFactory(requireActivity().application)
+            .create(RegisterViewModel::class.java)
+         userviewModel=ViewModelProvider.AndroidViewModelFactory(requireActivity().application)
+            .create(UserViewModel::class.java)
         if (myflag == 1) {
             binding.headText.text = "CONFIRM YOUR UNREGISTRATION"
         }
@@ -37,14 +42,19 @@ class MyDialogFragment(myEvents: my_events, flag: Int) : DialogFragment() {
         }
         binding.confirm.setOnClickListener {
             if (myflag == 0) {
-                vm.addevent(new_event)
-                Toast.makeText(
-                    activity,
-                    "You have successfully registered for the event",
-                    Toast.LENGTH_SHORT
-                ).show()
+                userviewModel.myUserData.observe(viewLifecycleOwner){
+                    registerViewModel.pushPost(regEvent(it.message.userName,_id))
+                }
+
+                registerViewModel.regResponse.observe(viewLifecycleOwner){
+                    if(it.isSuccessful){
+                        Toast.makeText(requireContext(),it.message(),Toast.LENGTH_LONG).show()
+                    }
+                    else{
+                        Toast.makeText(requireContext(),it.errorBody().toString(),Toast.LENGTH_LONG).show()
+                    }
+                }
             } else {
-                vm.deleteevent(new_event)
                 Toast.makeText(
                     activity,
                     "You have successfully unregistered for the event",

@@ -11,8 +11,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.google.gson.Gson
-import com.iiitlucknow.android.festify.ViewModels.Login_view_model
-import com.iiitlucknow.android.festify.data_classes.login_data
+import com.iiitlucknow.android.festify.viewModels.LoginViewModel
+import com.iiitlucknow.android.festify.data_classes.LoginData
 import com.iiitlucknow.android.festify.databinding.FragmentLoginBinding
 import org.json.JSONException
 import org.json.JSONObject
@@ -20,7 +20,7 @@ import org.json.JSONObject
 class LoginFragment : Fragment() {
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
-    lateinit var vm: Login_view_model
+    lateinit var vm: LoginViewModel
     lateinit var log_msg: String
     lateinit var log_er_msg: String
     override fun onCreateView(
@@ -31,8 +31,8 @@ class LoginFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
         vm = ViewModelProvider.AndroidViewModelFactory(requireActivity().application)
-            .create(Login_view_model::class.java)
-        vm.log_Response.observe(
+            .create(LoginViewModel::class.java)
+        vm.logResponse.observe(
             viewLifecycleOwner
         ) {
             if (it.isSuccessful) {
@@ -88,7 +88,7 @@ class LoginFragment : Fragment() {
                 .isNotEmpty() && binding.logPassword.text.toString().trim().isNotEmpty()
             ) {
                 vm.checkLogin(
-                    login_data(
+                    LoginData(
                         binding.logUser.text.toString().trim(),
                         binding.logPassword.text.toString().trim()
                     )

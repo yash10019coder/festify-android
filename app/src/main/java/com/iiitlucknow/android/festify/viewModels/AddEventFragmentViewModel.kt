@@ -1,21 +1,19 @@
-package com.iiitlucknow.android.festify.ViewModels
+package com.iiitlucknow.android.festify.viewModels
 
 import android.app.Application
 import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.iiitlucknow.android.festify.API.retrofitInstance
-import com.iiitlucknow.android.festify.data_classes.add_event_data
-import com.iiitlucknow.android.festify.data_classes.default_response
-import com.iiitlucknow.android.festify.data_classes.login_data
-import dagger.hilt.android.internal.Contexts.getApplication
+import com.iiitlucknow.android.festify.data_classes.AddEventData
+import com.iiitlucknow.android.festify.data_classes.DefaultResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class AddEventFragmentViewModel(application: Application) : AndroidViewModel(application) {
-    var add_Response: MutableLiveData<Response<default_response>> = MutableLiveData()
-    fun checkAddEvent(addEventData: add_event_data) {
+    var addResponse: MutableLiveData<Response<DefaultResponse>> = MutableLiveData()
+    fun checkAddEvent(addEventData: AddEventData) {
         retrofitInstance.api.addevent(
             addEventData.eventName,
                     addEventData.eventCategory,
@@ -25,15 +23,15 @@ class AddEventFragmentViewModel(application: Application) : AndroidViewModel(app
                     addEventData.eventEndTime,
                     addEventData.eventDescription,
                     addEventData.eventImage
-        ).enqueue(object : Callback<default_response> {
+        ).enqueue(object : Callback<DefaultResponse> {
             override fun onResponse(
-                call: Call<default_response>,
-                response: Response<default_response>
+                call: Call<DefaultResponse>,
+                response: Response<DefaultResponse>
             ) {
-                add_Response.value = response
+                addResponse.value = response
             }
 
-            override fun onFailure(call: Call<default_response>, t: Throwable) {
+            override fun onFailure(call: Call<DefaultResponse>, t: Throwable) {
                 Toast.makeText(getApplication(), t.message, Toast.LENGTH_LONG).show()
             }
         })

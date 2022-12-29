@@ -2,11 +2,9 @@ package com.iiitlucknow.android.festify
 
 import android.app.Activity
 import android.content.Intent
-import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
-import android.provider.MediaStore
-import android.util.Base64
+import android.util.Log
 import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.View
@@ -16,13 +14,15 @@ import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.cloudinary.android.MediaManager
+import com.cloudinary.android.callback.ErrorInfo
+import com.cloudinary.android.callback.UploadCallback
 import com.google.gson.Gson
-import com.iiitlucknow.android.festify.ViewModels.Signup_view_model
-import com.iiitlucknow.android.festify.data_classes.my_post
+import com.iiitlucknow.android.festify.viewModels.SignupViewModel
+import com.iiitlucknow.android.festify.data_classes.MyPost
 import com.iiitlucknow.android.festify.databinding.FragmentSignUpBinding
 import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
-import java.io.ByteArrayOutputStream
 import org.json.JSONException
 import org.json.JSONObject
 
@@ -31,9 +31,10 @@ class SignUpFragment : Fragment() {
     private val IMAGE_PICK_CODE = 1000
     private var _binding: FragmentSignUpBinding? = null
     private val binding get() = _binding!!
-    private lateinit var viewModel: Signup_view_model
-    lateinit var bitmap: Bitmap
-    lateinit var encodedImage: String
+    private lateinit var viewModel: SignupViewModel
+   // lateinit var bitmap: Bitmap
+    lateinit var url:String
+   // lateinit var encodedImage: String
     lateinit var s_msg: String
     lateinit var f_msg: String
     override fun onCreateView(
@@ -43,8 +44,8 @@ class SignUpFragment : Fragment() {
     ): View? {
         _binding = FragmentSignUpBinding.inflate(inflater, container, false)
         viewModel = ViewModelProvider.AndroidViewModelFactory(requireActivity().application)
-            .create(Signup_view_model::class.java)
-        viewModel.sign_Response.observe(
+            .create(SignupViewModel::class.java)
+        viewModel.signResponse.observe(
             viewLifecycleOwner
         ) {
 
@@ -65,10 +66,10 @@ class SignUpFragment : Fragment() {
                     val jObjError = JSONObject(it.errorBody()!!.string())
                     f_msg = jObjError.getString("message")
                     if (f_msg.contains("username")) {
-                        binding.laySetUsername!!.error = "Username is already taken"
+                        binding.laySetUsername.error = "Username is already taken"
                     }
                     if (f_msg.contains("email")) {
-                        binding.laySetEmail!!.error = "E-Mail is already taken"
+                        binding.laySetEmail.error = "E-Mail is already taken"
                     }
                 } catch (e: Exception) {
                     Toast.makeText(context, e.message, Toast.LENGTH_LONG).show()
@@ -77,29 +78,29 @@ class SignUpFragment : Fragment() {
         }
         binding.setEmail.doOnTextChanged { text, start, before, count ->
             if (!email_check(text.toString())) {
-                binding.laySetEmail!!.error = "Invalid E-Mail Format"
+                binding.laySetEmail.error = "Invalid E-Mail Format"
             } else {
-                binding.laySetEmail!!.error = null
+                binding.laySetEmail.error = null
             }
         }
         binding.setName.doOnTextChanged { text, start, before, count ->
             if (text.toString().isNotEmpty()) {
-                binding.laySetName!!.error = null
+                binding.laySetName.error = null
             }
         }
         binding.setUsername.doOnTextChanged { text, start, before, count ->
             if (text.toString().isNotEmpty()) {
-                binding.laySetUsername!!.error = null
+                binding.laySetUsername.error = null
             }
         }
         binding.setPassword.doOnTextChanged { text, start, before, count ->
             if (text.toString().isNotEmpty()) {
-                binding.laySetPassword!!.error = null
+                binding.laySetPassword.error = null
             }
         }
         binding.setConfirmPassword.doOnTextChanged { text, start, before, count ->
             if (text.toString().isNotEmpty()) {
-                binding.laySetConfirmPassword!!.error = null
+                binding.laySetConfirmPassword.error = null
             }
         }
         binding.selImg.setOnClickListener {
@@ -110,37 +111,40 @@ class SignUpFragment : Fragment() {
         }
         binding.fSignUpBtn.setOnClickListener {
             if (binding.setName.text.toString().trim().isEmpty()) {
-                binding.laySetName!!.error = "Name cannot be empty"
+                binding.laySetName.error = "Name cannot be empty"
             }
             if (binding.setUsername.text.toString().trim().isEmpty()) {
-                binding.laySetUsername!!.error = "UserName cannot be empty"
+                binding.laySetUsername.error = "UserName cannot be empty"
             }
             if (binding.setEmail.text.toString().trim().isEmpty()) {
-                binding.laySetEmail!!.error = "E-Mail cannot be empty"
+                binding.laySetEmail.error = "E-Mail cannot be empty"
             }
             if (binding.setPassword.text.toString().trim().isEmpty()) {
-                binding.laySetPassword!!.error = "Password cannot be empty"
+                binding.laySetPassword.error = "Password cannot be empty"
             }
             if (binding.setConfirmPassword.text.toString().trim().isEmpty()) {
-                binding.laySetConfirmPassword!!.error = "Confirm Password cannot be empty"
+                binding.laySetConfirmPassword.error = "Confirm Password cannot be empty"
             }
             if (binding.setConfirmPassword.text.toString()
                 .trim() != binding.setPassword.text.toString()
                     .trim()
             ) {
-                binding.laySetConfirmPassword!!.error =
+                binding.laySetConfirmPassword.error =
                     "Confirm Password is not the same as the Password"
             }
 
             if (checks()) {
-                uploadImage()
-                val my_post = my_post(
+               // Toast.makeText(requireContext(),url,Toast.LENGTH_SHORT).show()
+//                if(!Patterns.WEB_URL.matcher(url).matches()){
+//                    Toast.makeText(this,"Wait till the Image gets uploaded",Toast.LENGTH_LONG).s
+//                }
+                val MyPost = MyPost(
                     binding.setUsername.text.toString().trim(),
                     binding.setPassword.text.toString().trim(),
                     binding.setEmail.text.toString().trim(),
-                    encodedImage
+                    url
                 )
-                viewModel.pushPost(my_post)
+                viewModel.pushPost(MyPost)
             } else {
 
                 Toast.makeText(
@@ -175,12 +179,12 @@ class SignUpFragment : Fragment() {
         return false
     }
 
-    private fun uploadImage() {
-        val byteArrayOutputStream = ByteArrayOutputStream()
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 75, byteArrayOutputStream)
-        val imageByte: ByteArray = byteArrayOutputStream.toByteArray()
-        encodedImage = Base64.encodeToString(imageByte, Base64.DEFAULT)
-    }
+//    private fun uploadImage() {
+//        val byteArrayOutputStream = ByteArrayOutputStream()
+//        bitmap.compress(Bitmap.CompressFormat.JPEG, 75, byteArrayOutputStream)
+//        val imageByte: ByteArray = byteArrayOutputStream.toByteArray()
+//        encodedImage = Base64.encodeToString(imageByte, Base64.DEFAULT)
+//    }
 
     private fun pick_img_from_gallery() {
         val intent = Intent(Intent.ACTION_PICK)
@@ -199,17 +203,43 @@ class SignUpFragment : Fragment() {
                 }
                 CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE -> {
                     val result = CropImage.getActivityResult(data)
-                    bitmap = MediaStore.Images.Media.getBitmap(
-                        requireContext().contentResolver,
-                        result.uri
-                    )
-                    binding.selProfileImg.setImageBitmap(bitmap)
+//                    bitmap = MediaStore.Images.Media.getBitmap(
+//                        requireContext().contentResolver,
+//                        result.uri
+//                    )
+                   // binding.selProfileImg.setImageBitmap(bitmap)
                     my_data = result.uri
+                    binding.selProfileImg.setImageURI(result.uri)
+                    uploadToCloudinary(result.uri)
                 }
             }
         }
     }
+    private fun uploadToCloudinary(filePath: Uri) {
+        Log.d("A", "sign up uploadToCloudinary- ")
+        MediaManager.get().upload(filePath).callback(object : UploadCallback {
+            override fun onStart(requestId: String) {
+                url="Start"
+            }
 
+            override fun onProgress(requestId: String, bytes: Long, totalBytes: Long) {
+                url="Uploading"
+            }
+
+            override fun onSuccess(requestId: String, resultData: Map<*, *>) {
+                url= resultData["url"].toString()
+
+            }
+
+            override fun onError(requestId: String?, error: ErrorInfo) {
+                 url=("error " + error.description)
+            }
+
+            override fun onReschedule(requestId: String?, error: ErrorInfo) {
+                 url=("Reschedule " + error.description)
+            }
+        }).dispatch()
+    }
     private fun crop_the_image(uri: Uri) {
         CropImage.activity(uri)
             .setGuidelines(CropImageView.Guidelines.ON)

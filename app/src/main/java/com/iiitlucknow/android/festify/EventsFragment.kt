@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.iiitlucknow.android.festify.Adapters.recyclerAdapter
 import com.iiitlucknow.android.festify.Adapters.sliderAdapter
-import com.iiitlucknow.android.festify.data_classes.recyclerItem
+import com.iiitlucknow.android.festify.data_classes.RecyclerItem
 import com.iiitlucknow.android.festify.databinding.FragmentEventsBinding
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType
 import com.smarteist.autoimageslider.SliderAnimations
@@ -23,15 +23,15 @@ class EventsFragment : Fragment() {
         R.drawable.ai_img,
         R.drawable.designing_img
     )
-    private var fields: MutableList<recyclerItem> = mutableListOf(
-        recyclerItem(R.drawable.android, R.string.appdev),
-        recyclerItem(R.drawable.web_development, R.string.webdev),
-        recyclerItem(R.drawable.cyber_security, R.string.info_sec),
-        recyclerItem(R.drawable.ai, R.string.ml),
-        recyclerItem(R.drawable.design, R.string.designing),
-        recyclerItem(R.drawable.design, R.string.cp) ,
-        recyclerItem(R.drawable.design, R.string.foss),
-        recyclerItem(R.drawable.design, R.string.misc)
+    private var fields: MutableList<RecyclerItem> = mutableListOf(
+        RecyclerItem(R.drawable.android, R.string.appdev),
+        RecyclerItem(R.drawable.web_development, R.string.webdev),
+        RecyclerItem(R.drawable.cyber_security, R.string.info_sec),
+        RecyclerItem(R.drawable.ai, R.string.ml),
+        RecyclerItem(R.drawable.design, R.string.designing),
+        RecyclerItem(R.drawable.design, R.string.cp) ,
+        RecyclerItem(R.drawable.design, R.string.foss),
+        RecyclerItem(R.drawable.design, R.string.misc)
     )
 
     override fun onCreateView(

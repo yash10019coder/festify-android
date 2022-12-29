@@ -4,22 +4,21 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import com.iiitlucknow.android.festify.Adapters.clickAdapter
-import com.iiitlucknow.android.festify.ViewModels.MainViewModel
-import com.iiitlucknow.android.festify.data_classes.add_event_data
-import com.iiitlucknow.android.festify.data_classes.recyclerItemClick
+import com.iiitlucknow.android.festify.viewModels.MainViewModel
+import com.iiitlucknow.android.festify.data_classes.EventDataMessageModel
 import com.iiitlucknow.android.festify.databinding.FragmentClickBinding
 
 class ClickFragment : Fragment() {
     private var _binding: FragmentClickBinding? = null
     private val binding get() = _binding!!
-    val args: ClickFragmentArgs by navArgs()
-    lateinit var adapter: clickAdapter
+    private val args: ClickFragmentArgs by navArgs()
     lateinit var viewModel: MainViewModel
-    var listOfEvents = mutableListOf<recyclerItemClick>()
+    var listOfEvents = mutableListOf<EventDataMessageModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,7 +32,7 @@ class ClickFragment : Fragment() {
         viewModel = ViewModelProvider.AndroidViewModelFactory(requireActivity().application)
             .create(MainViewModel::class.java)
 
-        viewModel.myname.observe(viewLifecycleOwner) {
+        viewModel.myevent.observe(viewLifecycleOwner) {
             populateEventsList(it.message, args.event)
             binding.clickRecycler.adapter = clickAdapter(listOfEvents)
             binding.clickRecycler.setHasFixedSize(true)
@@ -41,37 +40,13 @@ class ClickFragment : Fragment() {
         return binding.root
     }
 
-    private fun populateEventsList(items: MutableList<add_event_data>, category: String) {
+    private fun populateEventsList(items: MutableList<EventDataMessageModel>, category: String) {
         listOfEvents.clear()
         for (ele in items) {
             if (ele.eventCategory == category) {
-                val dateTime = dateTimeFormat(
-                    ele.eventDate,
-                    ele.eventStartTime,
-                    ele.eventEndDate,
-                    ele.eventEndTime
-                )
-                val recycleritemclick = recyclerItemClick(
-                    R.drawable.android_img,
-                    ele.eventName,
-                    dateTime,
-                    ele.eventDescription,
-                    ele.eventCategory
-                )
-                listOfEvents.add(recycleritemclick)
+                listOfEvents.add(ele)
             }
         }
-    }
-
-    private fun dateTimeFormat(
-        startDate: String,
-        startTime: String,
-        endDate: String,
-        endTime: String
-    ): String {
-        val dateTime = StringBuilder(startDate).append(" ").append(startTime).append(" - ")
-            .append(endDate).append(" ").append(endTime)
-        return dateTime.toString()
     }
 
 }
