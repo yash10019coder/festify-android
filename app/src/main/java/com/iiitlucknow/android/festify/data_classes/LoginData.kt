@@ -1,6 +1,6 @@
 package com.iiitlucknow.android.festify.data_classes
 
-data class login_data(
+data class LoginData(
     val usernameOrEmail: String,
     val password: String
 )

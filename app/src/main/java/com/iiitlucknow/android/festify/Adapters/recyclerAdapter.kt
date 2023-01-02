@@ -5,13 +5,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.iiitlucknow.android.festify.EventsFragmentDirections
 import com.iiitlucknow.android.festify.R
-import com.iiitlucknow.android.festify.data_classes.recyclerItem
+import com.iiitlucknow.android.festify.data_classes.RecyclerItem
 
-class recyclerAdapter(private var list: MutableList<recyclerItem>) :
+class recyclerAdapter(private var list: MutableList<RecyclerItem>) :
     RecyclerView.Adapter<recyclerAdapter.ViewHolder>() {
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val recycler_text: TextView = view.findViewById(R.id.recycler_text)
@@ -29,6 +30,7 @@ class recyclerAdapter(private var list: MutableList<recyclerItem>) :
         holder.recycler_icon.setImageResource(list[position].icon)
         holder.recycler_text.text = holder.context.resources.getString(list[position].title)
         holder.itemView.setOnClickListener {
+
             val action =
                 EventsFragmentDirections.actionEventsFragmentToClickFragment(
                     holder.recycler_text.text.toString()

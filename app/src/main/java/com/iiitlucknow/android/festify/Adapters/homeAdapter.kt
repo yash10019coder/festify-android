@@ -12,10 +12,11 @@ import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.iiitlucknow.android.festify.MyDialogFragment
 import com.iiitlucknow.android.festify.R
-import com.iiitlucknow.android.festify.data.my_events
+import com.iiitlucknow.android.festify.data_classes.EventDataMessageModel
+
 
 class homeAdapter(
-    private val list: MutableList<my_events>
+    private val list: MutableList<EventDataMessageModel>
 ) : RecyclerView.Adapter<homeAdapter.ViewHolder>() {
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val recycler_clicker_title: TextView = view.findViewById(R.id.recycler_clicker_title)
@@ -36,16 +37,14 @@ class homeAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val fm: FragmentManager = (holder.context as AppCompatActivity).supportFragmentManager
         val item = list[position]
-        holder.recycler_clicker_title.text =item.my_title
-        holder.recycler_clicker_image.setImageResource(item.my_img)
-        holder.date.text =item.date
+        holder.recycler_clicker_title.text = item.eventName
+        holder.date.text = item.eventDate
         holder.recycler_clicker_button.text = "UNREGISTER"
         holder.recycler_clicker_button.background =
             ContextCompat.getDrawable(holder.context, R.drawable.unregister_background)
         holder.recycler_clicker_button.setOnClickListener {
-            val mydialog =
-                MyDialogFragment(my_events(item.id, item.my_img, item.my_title, item.date,item.desc,item.category), 1)
-            mydialog.show(fm, "my_view")
+            val mydialog = MyDialogFragment(item._id, 0)
+            mydialog.show(fm, "view")
         }
     }
 

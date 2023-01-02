@@ -5,18 +5,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.iiitlucknow.android.festify.MyDialogFragment
 import com.iiitlucknow.android.festify.R
-import com.iiitlucknow.android.festify.data.my_events
-import com.iiitlucknow.android.festify.data_classes.recyclerItemClick
+import com.iiitlucknow.android.festify.data_classes.EventDataMessageModel
 
-class clickAdapter(private var list: MutableList<recyclerItemClick>) :
+class clickAdapter(private var list: MutableList<EventDataMessageModel>) :
     RecyclerView.Adapter<clickAdapter.ViewHolder>() {
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val recycler_clicker_title: TextView = view.findViewById(R.id.recycler_clicker_title)
@@ -37,24 +35,16 @@ class clickAdapter(private var list: MutableList<recyclerItemClick>) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val fm: FragmentManager = (holder.context as AppCompatActivity).supportFragmentManager
         val item = list[position]
-        holder.recycler_clicker_title.text = item.my_title
-        holder.recycler_clicker_image.setImageResource(item.my_img)
-        holder.date.text = item.date
-        holder.recycler_clicker_desc.text = item.desc
-        holder.recycler_clicker_category.text = item.category
+        holder.recycler_clicker_title.text = item.eventName
+        Glide.with(holder.recycler_clicker_image.context)
+            .load(item.eventImage)
+            .into(holder.recycler_clicker_image)
+        holder.date.text = item.eventDate
+        holder.recycler_clicker_desc.text = item.eventDescription
+        holder.recycler_clicker_category.text = item.eventCategory
         holder.recycler_clicker_button.setOnClickListener {
-            val mydialog = MyDialogFragment(my_events(0, item.my_img, item.my_title, item.date,item.desc,item.category), 0)
+            val mydialog = MyDialogFragment(item._id, 0)
             mydialog.show(fm, "view")
-
-
-//            Toast.makeText(
-//                holder.context,
-//                "Registered for the Event " + holder.recycler_clicker_text.text +
-//                    " on " + holder.date.text,
-//                Toast.LENGTH_LONG
-//            ).show()
-
-
 
         }
     }

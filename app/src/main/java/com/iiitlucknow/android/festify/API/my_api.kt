@@ -1,7 +1,8 @@
 package com.iiitlucknow.android.festify.API
 
-import com.iiitlucknow.android.festify.data_classes.default_response
-import com.iiitlucknow.android.festify.data_classes.event_data
+import com.iiitlucknow.android.festify.data_classes.DefaultResponse
+import com.iiitlucknow.android.festify.data_classes.EventData
+import com.iiitlucknow.android.festify.data_classes.UserData
 import retrofit2.Call
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
@@ -16,7 +17,7 @@ interface my_api {
         @Field("userPassword") userPassword: String,
         @Field("userEmail") userEmail: String,
         @Field("userPhoto") userPhoto: String
-    ): Call<default_response>
+    ): Call<DefaultResponse>
 
     @FormUrlEncoded
     @POST("event/create")
@@ -29,15 +30,42 @@ interface my_api {
         @Field("eventEndTime") eventEndTime: String,
         @Field("eventDescription") eventDescription: String,
         @Field("eventImage") eventImage: String
-    ): Call<default_response>
+    ): Call<DefaultResponse>
 
     @FormUrlEncoded
     @POST("user/login")
     fun loginuser(
         @Field("usernameOrEmail") userName: String,
         @Field("password") userPassword: String,
-    ): Call<default_response>
+    ): Call<DefaultResponse>
+
+    @FormUrlEncoded
+    @POST("/verify")
+    fun verify_user(
+        @Field("userName") userName: String,
+        @Field("name") name: String,
+        @Field("email") email: String,
+        @Field("wing") wing: String,
+        @Field("role") role: String
+    ): Call<DefaultResponse>
+
+    @FormUrlEncoded
+    @POST("user/register")
+    fun eventRegister(
+        @Field("userName") userName: String,
+        @Field("eventName") eventName: String
+    ): Call<DefaultResponse>
+
+    @FormUrlEncoded
+    @POST("user/delete")
+    fun eventDelete(
+        @Field("userName") userName: String,
+        @Field("eventName") eventId: String
+    ): Call<DefaultResponse>
+
+    @GET("user/ro")
+    suspend fun getUserData(): UserData
 
     @GET("event/all")
-    suspend fun getEventData(): event_data
+    suspend fun getEventData(): EventData
 }

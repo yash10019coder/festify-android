@@ -1,6 +1,6 @@
 package com.iiitlucknow.android.festify.data_classes
 
-data class my_post(
+data class MyPost(
 
     val userName: String,
     val userPassword: String,

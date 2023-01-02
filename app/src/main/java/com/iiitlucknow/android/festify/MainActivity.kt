@@ -12,11 +12,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
-import coil.load
-import com.iiitlucknow.android.festify.ViewModels.MainViewModel
-import com.iiitlucknow.android.festify.data_classes.add_event_data
-import com.iiitlucknow.android.festify.data_classes.event_data
+import com.bumptech.glide.Glide
 import com.iiitlucknow.android.festify.databinding.ActivityMainBinding
+import com.iiitlucknow.android.festify.viewModels.UserViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import de.hdodenhof.circleimageview.CircleImageView
 
@@ -24,26 +22,39 @@ import de.hdodenhof.circleimageview.CircleImageView
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     lateinit var toggle: ActionBarDrawerToggle
+    lateinit var viewModel: UserViewModel
+    var token: Boolean = false
+    lateinit var userName: String
+    lateinit var userEmail:String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        viewModel = ViewModelProvider.AndroidViewModelFactory(application)
+            .create(UserViewModel::class.java)
+        val view: View = binding.nav.getHeaderView(0)
+        val profile_img: CircleImageView = view.findViewById(R.id.profile_img)
+        val profile_username: TextView = view.findViewById(R.id.profile_username)
+        viewModel.myUserData.observe(this) {
+            Glide.with(this)
+                .load(it.message.userPhoto)
+                .into(profile_img)
+
+            profile_username.text = it.message.userName
+            token = it.message.token
+            userName = it.message.userName
+            userEmail=it.message.userEmail
+        }
         toggle = ActionBarDrawerToggle(this, binding.drawer, R.string.open, R.string.close)
         binding.drawer.addDrawerListener(toggle)
         toggle.syncState()
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        val view: View = binding.nav.getHeaderView(0)
-        val profile_img: CircleImageView = view.findViewById(R.id.profile_img)
-        val profile_username: TextView = view.findViewById(R.id.profile_username)
+
+
         val navHostFragment = supportFragmentManager.findFragmentById(
             R.id.fragmenthost
         ) as NavHostFragment
         binding.bottomNavigationBar.setupWithNavController(navHostFragment.navController)
-        val extras = intent.extras
-        if (extras != null) {
-            profile_img.load(extras.getString("p_img"))
-            profile_username.text = extras.getString("username")
-        }
         binding.nav.setNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.contribute -> {
@@ -52,10 +63,12 @@ class MainActivity : AppCompatActivity() {
                     startActivity(openURL)
                 }
                 R.id.requestverification -> {
-                    val message = extras?.getString("username")
+                    val message = userName
                     val intent = Intent(this, RequestVerificationActivity::class.java)
-                        .apply { putExtra("username", message) }
+                    intent.putExtra("username", userName)
+                    intent.putExtra("email",userEmail)
                     startActivity(intent)
+
                 }
             }
             false

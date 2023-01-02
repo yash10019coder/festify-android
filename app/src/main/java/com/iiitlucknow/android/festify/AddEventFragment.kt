@@ -20,8 +20,8 @@ import com.cloudinary.android.callback.ErrorInfo
 import com.cloudinary.android.callback.UploadCallback
 import com.google.android.material.textfield.TextInputEditText
 import com.google.gson.Gson
-import com.iiitlucknow.android.festify.ViewModels.AddEventFragmentViewModel
-import com.iiitlucknow.android.festify.data_classes.add_event_data
+import com.iiitlucknow.android.festify.viewModels.AddEventFragmentViewModel
+import com.iiitlucknow.android.festify.data_classes.AddEventData
 import com.iiitlucknow.android.festify.databinding.FragmentAddeventsBinding
 import org.json.JSONException
 import org.json.JSONObject
@@ -45,8 +45,7 @@ class AddEventFragment : Fragment() {
         _binding = FragmentAddeventsBinding.inflate(inflater, container, false)
         vm = ViewModelProvider.AndroidViewModelFactory(requireActivity().application)
             .create(AddEventFragmentViewModel::class.java)
-        config()
-        vm.add_Response.observe(
+        vm.addResponse.observe(
             viewLifecycleOwner
         ) {
             if (it.isSuccessful) {
@@ -92,7 +91,7 @@ class AddEventFragment : Fragment() {
              * Get selected item in category spinner like this :
              * binding.eventCategorySpinner.selectedItem.toString()
              */
-            vm.checkAddEvent(add_event_data(
+            vm.checkAddEvent(AddEventData(
                 binding.eventNameEditText.text.toString().trim(),
                 binding.eventCategorySpinner.selectedItem.toString(),
                 binding.eventDateEditText.text.toString().trim(),
