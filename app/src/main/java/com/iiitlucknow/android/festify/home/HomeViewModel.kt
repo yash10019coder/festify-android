@@ -4,9 +4,6 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
-import com.iiitlucknow.android.data.persistance.EventsDao
-import com.iiitlucknow.android.data.persistance.EventsEntity
-import com.iiitlucknow.android.data.persistance.EventsRepository
 import dagger.hilt.android.scopes.ViewModelScoped
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

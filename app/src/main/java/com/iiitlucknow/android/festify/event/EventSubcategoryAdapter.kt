@@ -9,7 +9,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
-import com.iiitlucknow.android.data.persistance.EventsEntity
 import com.iiitlucknow.android.festify.R
 import com.iiitlucknow.android.model.EventRecyclerItemClick
 

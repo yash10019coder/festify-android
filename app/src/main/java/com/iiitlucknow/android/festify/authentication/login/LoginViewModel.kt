@@ -4,7 +4,7 @@ import android.app.Application
 import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import com.iiitlucknow.android.data.backends.RetrofitInstance
+import com.iiitlucknow.android.data.backends.RetrofitModule
 import com.iiitlucknow.android.data.backends.model.DefaultResponse
 import com.iiitlucknow.android.data.backends.model.LoginData
 import retrofit2.Call
@@ -15,7 +15,7 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
 
     var log_Response: MutableLiveData<Response<DefaultResponse>> = MutableLiveData()
     fun checkLogin(loginData: LoginData) {
-        RetrofitInstance.api.loginUser(
+        RetrofitModule.api.loginUser(
             loginData.usernameOrEmail,
             loginData.password
         ).enqueue(object : Callback<DefaultResponse> {

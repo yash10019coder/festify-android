@@ -3,10 +3,16 @@ package com.iiitlucknow.android.data.backends
 import com.iiitlucknow.android.data.backends.api.UserService
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import dagger.Module
+import dagger.hilt.InstallIn
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import javax.inject.Singleton
+import kotlin.text.Typography.dagger
 
-object RetrofitInstance {
+@Module
+@InstallIn(Singleton::class)
+object RetrofitModule {
     private const val BASE_URL =
         "https://festify-iiitl.herokuapp.com/"
     private val moshi = Moshi.Builder()
